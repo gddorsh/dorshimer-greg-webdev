@@ -14,8 +14,6 @@ module.exports = function(app)
             process.env.MLAB_APP_NAME;
     }
 
-    console.log(connectionString);
-
     var mongoose = require("mongoose");
     mongoose.connect(connectionString);
 
