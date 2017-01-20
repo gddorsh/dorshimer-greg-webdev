@@ -8,72 +8,57 @@
 </head>
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-static-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">
-                Fixed Top
+                Profile
             </a>
-            <p class="navbar-text pull-right">
+
+        </div>
+        <div class="row navbar-text navbar-right">
+            <div class="col-xs-3 text-center">
                 <a href="#" class="navbar-link">
-          <span class="glyphicon glyphicon-plus">
-          </span>
+                    <span class="glyphicon glyphicon-ok"></span>
                 </a>
-            </p>
+            </div>
         </div>
     </div>
 </nav>
 
 
     <div class="container">
-        <h1>Profile</h1>
-
         <form>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input type="text" class="form-control" id="username" value="TestUsername">
             </div>
             <div class="form-group">
                 <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+                <input type="email" class="form-control" id="email" value="test@mailserver.com">
             </div>
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" class="form-control" id="first-name" placeholder="Alice">
+                <input type="text" class="form-control" id="first-name" value="TestFirstName">
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" class="form-control" id="last-name" placeholder="Wonderland">
+                <input type="text" class="form-control" id="last-name" value="TestLastName">
             </div>
         </form>
 
         <a class="btn btn-primary btn-block"
            href="website-list.html">Websites</a>
-        <a class="btn btn-danger  btn-block"
+        <a class="btn btn-danger btn-block"
            href="login.html">Logout</a>
     </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container">
-        <div class="row navbar-text">
+<nav class="navbar navbar-default navbar-static-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text navbar-right">
             <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-star"></span>
-                </a>
-            </div>
-            <div class="col-xs-3 text-center">
-                <a href="#">
-                    <span class="glyphicon glyphicon-heart"></span>
+                <a href="#" class="navbar-link">
+                    <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
         </div>
