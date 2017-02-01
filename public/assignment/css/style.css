@@ -3,10 +3,18 @@ input.form-control {
 }
 
 body {
-    padding-top: 0px;
-    padding-bottom: 0px;
+    padding-top: 64px;
+    padding-bottom: 438px;
 }
 
 html,body {
     height: 100%;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.top-buffer {
+    margin-top: 10px;
 }

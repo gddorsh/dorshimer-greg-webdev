@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/style.css" rel="stylesheet"/>
+
+    <title>Widget Image</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-text col-xs-1 pull-left">
+                <a class="navbar-link pull-left" href="#">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+
+            <div class="navbar-header col-xs-8 pull-left">
+                <a class="navbar-brand pull-left" href="#">
+                    Widget Edit
+                </a>
+            </div>
+
+            <div class="navbar-text col-xs-1 pull-right">
+                <a class="navbar-link pull-right" href="#">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <form>
+        <div class="form-group">
+            <label for="widget-name">Name</label>
+            <input type="text" class="form-control" id="widget-name" placeholder="Sample Name">
+        </div>
+
+        <div class="form-group">
+            <label for="widget-text">Text</label>
+            <input type="text" class="form-control" id="widget-text" placeholder="Sample Text">
+        </div>
+
+        <div class="form-group">
+            <label for="widget-url">URL</label>
+            <input type="text" class="form-control" id="widget-url" value="http://i.imgur.com/mLxeOsk.jpg">
+        </div>
+
+        <div class="form-group">
+            <label for="widget-width">Width</label>
+            <input type="text" class="form-control" id="widget-width" value="100%">
+        </div>
+
+        <div class="form-group">
+            <label for="widget-image">Image</label>
+            <input type="file" class="form-control" id="widget-image">
+        </div>
+    </form>
+
+    <a class="btn btn-primary btn-block"
+       href="../website_pages/website-list.html">Upload Image</a>
+
+    <a class="btn btn-danger btn-block"
+       href="../website_pages/website-list.html">Delete</a>
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="navbar-text col-xs-1 pull-right">
+                <a class="navbar-link pull-right" href="#">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+</body>
+</html>
