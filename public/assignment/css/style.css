@@ -18,3 +18,15 @@ a:hover {
 .top-buffer {
     margin-top: 10px;
 }
+
+.bordered {
+    border: 1px solid black;
+}
+
+.container {
+    height: 100%;
+}
+
+.row {
+    height: 100%;
+}
