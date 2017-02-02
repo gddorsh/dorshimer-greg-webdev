@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 
@@ -10,77 +10,104 @@
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="navbar-text col-xs-1 pull-left">
-                <a class="navbar-link pull-left" href="#">
+    <div class="row container-fluid">
+        <div class="col-xs-10">
+            <div class="navbar-text pull-left">
+                <a class="navbar-link pull-left" href="../page_pages/page-list.html">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
 
-            <div class="navbar-header col-xs-8 pull-left">
+            <div class="navbar-header pull-left">
                 <a class="navbar-brand pull-left" href="#">
                     Widgets
                 </a>
             </div>
+        </div>
 
-            <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link pull-right" href="#">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
+        <div class="navbar-text col-xs-1 pull-right">
+            <a class="navbar-link pull-right" href="widget-chooser.html">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
         </div>
     </div>
 </nav>
 
-
-<div class="container">
-    <form>
-        <div class="form-group">
-            <label for="widget-name">Name</label>
-            <input type="text" class="form-control" id="widget-name" placeholder="Sample Name">
+<div class="container-fluid">
+    <div>
+        <div class="jga-toolbar">
+            <a href="widget-heading.html">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-align-justify"></span>
+        </div>
+        <h1>ESPNFC</h1>
+    </div>
+    <div>
+        <div class="jga-toolbar">
+            <a>
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-align-justify"></span>
+        </div>
+        <h3>Harry Kane Says Leaving Spurs Now Would Be Stupid</h3>
+    </div>
+    <div>
+        <div class="jga-toolbar">
+            <a href="widget-image.html">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
-        <div class="form-group">
-            <label for="widget-text">Text</label>
-            <input type="text" class="form-control" id="widget-text" placeholder="Sample Text">
+        <img width="100%" src="http://i.imgur.com/w1xIlIa.png">
+    </div>
+    <div>
+        <div class="jga-toolbar">
+            <a>
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
-        <div class="form-group">
-            <label for="widget-url">URL</label>
-            <input type="text" class="form-control" id="widget-url" value="http://i.imgur.com/mLxeOsk.jpg">
+        <p>At Tottenham Hotspur, it's typical for star players to be sold every summer, as the club cannot satisfy the ambition of players of such high quality. But this summer, the club will look to keep hold of its most highly-rated youngsters including Kane, Dele Alli, and Eric Dier.</p>
+    </div>
+    <div>
+        <div class="jga-toolbar">
+            <a href="widget-youtube.html">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <span class="glyphicon glyphicon-align-justify"></span>
         </div>
-
-        <div class="form-group">
-            <label for="widget-width">Width</label>
-            <input type="text" class="form-control" id="widget-width" value="100%">
-        </div>
-
-        <div class="form-group">
-            <label for="widget-image">Image</label>
-            <input type="file" class="form-control" id="widget-image">
-        </div>
-    </form>
-
-    <a class="btn btn-primary btn-block"
-       href="../website_pages/website-list.html">Upload Image</a>
-
-    <a class="btn btn-danger btn-block"
-       href="../website_pages/website-list.html">Delete</a>
+        <iframe width="100%" src="https://www.youtube.com/embed/bIelBmmZdhE" frameborder="0" allowfullscreen></iframe>
+    </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link pull-right" href="#">
-                    <span class="glyphicon glyphicon-user"></span>
+    <div class="row container-fluid">
+        <div class="col-xs-1">
+            <div class="navbar-text pull-left">
+                <a class="navbar-link pull-left" href="#">
+                    <span class="glyphicon glyphicon-play"></span>
                 </a>
             </div>
         </div>
+
+        <div class="col-xs-9">
+            <div class="navbar-text pull-left">
+                <a class="navbar-link pull-left" href="#">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
+            <a class="navbar-link pull-right" href="../user_pages/profile.html">
+            <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
     </div>
 </nav>
-
 
 </body>
 </html>

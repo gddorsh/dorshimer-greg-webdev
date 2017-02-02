@@ -1,3 +1,11 @@
+.wrapper {
+    position: relative;
+}
+
+.wrapper .glyphicon {
+    position: absolute;
+}
+
 input.form-control {
     margin-bottom: 5px;
 }
@@ -5,6 +13,7 @@ input.form-control {
 body {
     padding-top: 64px;
     padding-bottom: 438px;
+    overflow: auto;
 }
 
 html,body {
@@ -29,4 +38,33 @@ a:hover {
 
 .row {
     height: 100%;
+}
+
+.no-left-margin {
+    margin-left: 0px;
+}
+
+.no-right-margin {
+    margin-right: 0px;
+}
+
+.jga-toolbar {
+    position: absolute;
+    right: 15px;
+    background-color: white;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    padding-right: 3px;
+    padding-top: 2px;
+    border-bottom-left-radius: 5px;
+    opacity: 0.7;
+}
+
+.jga-toolbar.glyphicon {
+    opacity: 1.0;
+}
+
+.thin-border {
+    border-width: 1px;
+    border-style: solid;
 }
