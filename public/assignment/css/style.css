@@ -1,27 +1,28 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+body {
+    padding-top: 60px;
+    padding-bottom: 0px;
+    overflow: auto;
+}
+
+html,body {
+    height: 100%;
+    max-width: 100%;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
 .wrapper {
     position: relative;
 }
 
 .wrapper .glyphicon {
     position: absolute;
-}
-
-input.form-control {
-    margin-bottom: 5px;
-}
-
-body {
-    padding-top: 64px;
-    padding-bottom: 438px;
-    overflow: auto;
-}
-
-html,body {
-    height: 100%;
-}
-
-a:hover {
-    text-decoration: none;
 }
 
 .top-buffer {
