@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="WebAppMaker">
 <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-animate.js"></script>
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+
+    <!-- controllers -->
+    <script src="views/user/controllers/login.controller.client.js"></script>
+    <script src="views/user/controllers/profile.controller.client.js"></script>
+    <script src="views/website/controllers/website-list.controller.client.js"></script>
+    <script src="views/website/controllers/website-new.controller.client.js"></script>
+    <script src="views/website/controllers/website-edit.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-list.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-edit.controller.client.js"></script>
+
+    <!-- services -->
+    <script src="services/user.service.client.js"></script>
+    <script src="services/website.service.client.js"></script>
+    <script src="services/widget.service.client.js"></script>
+
     <meta charset="UTF-8">
-    <title>Assignment Home Page</title>
+    <title>Web App Maker</title>
 </head>
 <body>
-    <h1>Assignment Home Page</h1>
-    <h2>Links</h2>
-    <ul>
-        <li>
-            <a href="user_pages/login.html">Login</a>
-        </li>
-        <li>
-            <a href="user_pages/profile.html">Profile</a>
-        </li>
-        <li>
-            <a href="user_pages/register.html">Register</a>
-        </li>
-        <li>
-            <a href="../index.html">Back to my Home Page</a>
-        </li>
-    </ul>
+
+<div ng-view></div>
+
 </body>
 </html>

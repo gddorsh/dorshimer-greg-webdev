@@ -5,20 +5,20 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
     <link href="../css/style.css" rel="stylesheet"/>
 
-    <title>Widget Heading</title>
+    <title>Widget Image</title>
 </head>
 <body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
-        <div class="col-xs-9">
+        <div class="col-xs-10">
             <div class="navbar-text pull-left">
                 <a class="navbar-link pull-left no-left-margin" href="widget-list.html">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
 
-            <div class="navbar-header pull-left">
+            <div class="navbar-header col-xs-8 pull-left">
                 <a class="navbar-brand pull-left" href="#">
                     Widget Edit
                 </a>
@@ -38,19 +38,32 @@
     <form>
         <div class="form-group">
             <label for="widget-name">Name</label>
-            <input type="text" class="form-control" id="widget-name" placeholder="Widget Name">
+            <input type="text" class="form-control" id="widget-name" placeholder="Sample Name">
         </div>
 
         <div class="form-group">
-            <label for="widget-text">Title</label>
-            <input type="text" class="form-control" id="widget-text" placeholder="Widget Title">
+            <label for="widget-text">Text</label>
+            <input type="text" class="form-control" id="widget-text" placeholder="Sample Text">
         </div>
 
         <div class="form-group">
-            <label for="widget-size">Size</label>
-            <input type="text" class="form-control" id="widget-size" placeholder="Widget Size">
+            <label for="widget-url">URL</label>
+            <input type="text" class="form-control" id="widget-url" value="http://i.imgur.com/mLxeOsk.jpg">
+        </div>
+
+        <div class="form-group">
+            <label for="widget-width">Width</label>
+            <input type="text" class="form-control" id="widget-width" value="100%">
+        </div>
+
+        <div class="form-group">
+            <label for="widget-image">Image</label>
+            <input type="file" class="form-control" id="widget-image">
         </div>
     </form>
+
+    <a class="btn btn-primary btn-block"
+       href="../views/website_pages/website-list.html">Upload Image</a>
 
     <a class="btn btn-danger btn-block"
        href="widget-list.html">Delete</a>
@@ -60,7 +73,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link pull-right" href="../user_pages/profile.html">
+                <a class="navbar-link pull-right" href="../views/user_pages/profile.html  ">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
