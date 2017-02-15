@@ -1,0 +1,73 @@
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div class="col-xs-10">
+            <div class="navbar-text pull-left">
+                <a class="navbar-link pull-left" href="../views/page_pages/page-list.html">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </div>
+
+            <div class="navbar-header pull-left">
+                <a class="navbar-brand pull-left" href="#">
+                    Widgets
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
+            <a class="navbar-link pull-right" href="widget-chooser.view.client.html">
+                <span class="glyphicon glyphicon-plus"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <div   ng-repeat="widget in model.widgets">
+
+        <!-- render an individual widget here, using
+             ng-switch and individual widget templates
+             -->
+
+        <div>
+            <div class="jga-toolbar">
+                <a>
+                    <span class="glyphicon glyphicon-cog"></span>
+                </a>
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </div>
+
+            <h3>Harry Kane Says Leaving Spurs Now Would Be Stupid</h3>
+        </div>
+
+    </div>
+
+</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="row container-fluid">
+        <div class="col-xs-1">
+            <div class="navbar-text pull-left">
+                <a class="navbar-link pull-left" href="">
+                    <span class="glyphicon glyphicon-play"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="col-xs-9">
+            <div class="navbar-text pull-left">
+                <a class="navbar-link pull-left" href="">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                </a>
+            </div>
+        </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
+            <a class="navbar-link pull-right" href="/profile">
+            <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

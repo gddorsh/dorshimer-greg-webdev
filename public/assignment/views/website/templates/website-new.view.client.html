@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/style.css" rel="stylesheet"/>
-
-    <title>Website Edit</title>
-</head>
-<body>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a class="navbar-link" href="website-list.html">
+                <a class="navbar-link" href="website-list.view.client.html">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -31,13 +21,13 @@
 
         <div class="col-sm-8">
             <div class="navbar-text pull-right">
-                <a class="navbar-link" href="website-list.html">
+                <a class="navbar-link" href="website-list.view.client.html">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
             <div class="navbar-header">
                 <a class="navbar-brand no-left-padding no-left-margin">
-                    Edit Website
+                    New Website
                 </a>
             </div>
         </div>
@@ -87,20 +77,30 @@
             </div>
         </div>
     </div>
+
     <div class="col-sm-8">
-        <label for="website-name">Website Name</label>
-        <input value="Sample Website Name"
-               class="form-control"
-               id="website-name"/>
+        <form>
+            <div class="form-group">
+                <label for="website-name">Website Name</label>
+                <input ng-model="model.website.websiteName"
+                       placeholder="Website Name"
+                       class="form-control"
+                       id="website-name"/>
+            </div>
 
-        <label for="website-description">Website Description</label>
-        <textarea class="form-control"
-                  id="website-description"
-                  rows="3">This is the description of a sample website. You can edit it.</textarea>
+            <div class="form-group">
+                <label for="website-description">Website Description</label>
+                <textarea ng-model="model.website.websiteDescription"
+                          placeholder="Website Description"
+                          class="form-control"
+                          id="website-description"
+                          rows="3"></textarea>
+            </div>
 
-        <a href="website-list.html" class="btn btn-danger btn-block top-buffer">
-            Delete
-        </a>
+            <a href="website-list.view.client.html" class="btn btn-primary btn-block top-buffer">
+                Create
+            </a>
+        </form>
     </div>
 </div>
 
@@ -108,13 +108,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link pull-right" href="../views/user_pages/profile.html">
+                <a class="navbar-link pull-right" href="/profile">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
         </div>
     </div>
 </nav>
-
-</body>
-</html>
