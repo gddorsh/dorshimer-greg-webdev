@@ -3,15 +3,18 @@
         .module("WebAppMaker")
         .controller("loginController", loginController);
 
-    function loginController(UserService, $location) {
+    function loginController($location, UserService) {
         var vm = this;
-        vm.login = function (user) {
-            var loginUser = UserService.findUserByCredentials(user.username, user.password);
-            if (loginUser != null) {
-                $location.url('/user/' + loginUser._id);
+        vm.login = login;
+
+        function login(user) {
+            var myUser = UserService.findUserByCredentials(user.username, user.password);
+            if (myUser != null) {
+                $location.url('/user/' + myUser._id);
             } else {
-                vm.error = 'user not found';
+                vm.error = 'User/Password combination not found.';
             }
         }
     }
+
 })();

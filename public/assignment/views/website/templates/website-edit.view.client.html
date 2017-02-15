@@ -3,7 +3,7 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a class="navbar-link" href="/user/:uid/website">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -13,18 +13,13 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="navbar-link" href="/user/:uid/website/:wid/page/new">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
         </div>
 
-        <div class="col-sm-8">
-            <div class="navbar-text pull-right">
-                <a class="navbar-link" href="/user/:uid/website">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </div>
+        <div class="col-sm-8">>
             <div class="navbar-header">
                 <a class="navbar-brand no-left-padding no-left-margin">
                     Edit Website
@@ -35,47 +30,22 @@
 </nav>
 
 <div class="row container-fluid">
+
     <div class="col-sm-4 hidden-xs">
-        <div class="row top-buffer">
-            <div class="col-xs-10">
-                Blogging App
-            </div>
-            <div class="col-xs-2">
-                <a href="" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </div>
-        </div>
-        <div class="row top-buffer">
-            <div class="col-xs-10">
-                Address Book App
-            </div>
-            <div class="col-xs-2">
-                <a href=""" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
+
+        <div ng-repeat="website in model.websites">
+            <div class="row top-buffer">
+                <div class="col-xs-10">
+                    {{website.name}}
+                </div>
+                <div class="col-xs-2">
+                    <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="row top-buffer">
-            <div class="col-xs-10">
-                Script Testing App
-            </div>
-            <div class="col-xs-2">
-                <a href="" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </div>
-        </div>
-        <div class="row top-buffer">
-            <div class="col-xs-10">
-                Blogger
-            </div>
-            <div class="col-xs-2">
-                <a href="" class="pull-right">
-                    <span class="glyphicon glyphicon-cog"></span>
-                </a>
-            </div>
-        </div>
+
     </div>
 
     <div class="col-sm-8">
@@ -91,9 +61,11 @@
                   id="website-description"
                   rows="3"></textarea>
 
-        <a ng-click="" href="/user/:uid/website" class="btn btn-danger btn-block top-buffer">
-            Delete
-        </a>
+        <a ng-click="model.update(model.website)"
+           class="btn btn-primary btn-block top-buffer">Update</a>
+
+        <a ng-click="model.deleteWebsite(model.website)"
+           class="btn btn-danger btn-block top-buffer">Delete</a>
     </div>
 </div>
 
@@ -101,7 +73,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link pull-right" href="/profile">
+                <a class="navbar-link pull-right" href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>

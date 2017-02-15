@@ -3,11 +3,19 @@
         .module("WebAppMaker")
         .controller("WebsiteNewController", WebsiteNewController)
 
-    function WebsiteNewController() {
+    function WebsiteNewController($routeParams, WebsiteService) {
         var vm = this;
-        // TODO
-    }
+        userId = $routeParams('uid');
+        vm.userId = userId;
+        vm.update = update;
+        function init() {
+            vm.websites = WebsiteService.findWebsitesByUser(userId);
+        }
+        init();
 
-    // TODO
+        function update(website) {
+            WebsiteService.updateWebsite(website);
+        }
+    }
 
 })();

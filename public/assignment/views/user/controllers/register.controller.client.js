@@ -1,13 +1,16 @@
 (function() {
     angular
         .module("WebAppMaker")
-        .controller("RegisterController", RegisterController)
+        .controller("RegisterController", RegisterController);
 
-    function RegisterController() {
+    function RegisterController($location, UserService) {
         var vm = this;
-        // TODO
-    }
+        vm.register = register;
 
-    // TODO
+        function register(user) {
+            UserService.createUser(user);
+            $location.url('#/user/' + user._id);
+        }
+    }
 
 })();
