@@ -31,7 +31,7 @@
         function deleteWebsite() {
             var deleted = WebsiteService.deleteWebsite(vm.websiteId);
             if (deleted) {
-                console.log("website successfully deleted");
+                //console.log("website successfully deleted");
                 $location.url("/user/" + userId + "/website");
             } else {
                 console.log("failed to delete website");

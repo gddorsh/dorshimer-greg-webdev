@@ -11,19 +11,27 @@
         vm.websiteId = websiteId;
         var pageId = $routeParams['pid'];
         vm.pageId = pageId;
-        vm.update = update;
-        function init() {
-            vm.page = PageService.findPageById(pageId);
-        }
-        init();
+        vm.updatePage = updatePage;
+        vm.deletePage = deletePage;
+        vm.page = PageService.findPageById(pageId);
 
-        function update(page) {
-            var newPage = PageService.updatePage(page._id, page);
+        function updatePage() {
+            var newPage = PageService.updatePage(vm.page._id, vm.page);
             if (newPage == null) {
-                console.log('failed to update page');
+                //console.log('failed to update page');
             } else {
-                console.log('successfully updated page');
-                $location.url('#/user/' + userId + "/website/" + websiteId + '/page');
+                //console.log('successfully updated page');
+                $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+            }
+        }
+
+        function deletePage() {
+            var deleted = PageService.deletePage(vm.page._id);
+            if (deleted) {
+                console.log('successfully deleted page');
+                $location.url("/user/" + userId + "/website/" + websiteId + "/page");
+            } else {
+                console.log('could not delete page');
             }
         }
     }

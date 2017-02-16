@@ -24,10 +24,9 @@
         return api;
 
         function createWebsite(userId, website) {
-            users.push(website);
-            for (var w in websites) {
-                if (websites[w]._id === website._id) {
-                    websites[w].userId = userId;
+            websites.push(website);
+            for (w in websites) {
+                if (w.developerId == userId) {
                     return angular.copy(websites[w]);
                 }
             }
@@ -37,7 +36,7 @@
         function findWebsitesByUser(userId) {
             var sites = [];
             for (var w in websites) {
-                if (websites[w].developerId === userId) {
+                if (websites[w].developerId == userId) {
                     sites.push(angular.copy(websites[w]));
                 }
             }

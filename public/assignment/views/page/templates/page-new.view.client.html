@@ -25,6 +25,7 @@
             <input ng-model="model.page.name"
                    type="text"
                    class="form-control"
+                   placeholder="Page Name"
                    id="page-name">
         </div>
 
@@ -34,12 +35,16 @@
                       type="text"
                       class="form-control"
                       id="page-description"
+                      placeholder="Page Description"
                       rows="3"></textarea>
         </div>
     </form>
 
-    <a ng-click="model.create(model.page)"
+    <a ng-click="model.create()"
        class="btn btn-primary btn-block top-buffer">Create</a>
+
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"
+       class="btn btn-danger btn-block top-buffer">Cancel</a>
 
 </div>
 
