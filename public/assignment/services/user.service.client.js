@@ -29,7 +29,7 @@
 
         function findUserById(userId) {
             for (var u in users) {
-                if (users[u]._id === userid) {
+                if (users[u]._id === userId) {
                     return angular.copy(users[u]);
                 }
             }

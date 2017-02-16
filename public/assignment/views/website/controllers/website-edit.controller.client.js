@@ -9,29 +9,30 @@
         vm.userId = userId;
         var websiteId = $routeParams['wid'];
         vm.websiteId = websiteId;
-        vm.update = update;
-        vm.delete = deleteWebsite;
+        vm.updateWebsite = updateWebsite;
+        vm.deleteWebsite = deleteWebsite;
 
         function init() {
+            vm.websites = WebsiteService.findWebsitesByUser(userId);
             vm.website = WebsiteService.findWebsiteById(websiteId);
         }
         init();
 
-        function update(website) {
-            var newWebsite = WebsiteService.updateWebsite(website);
-            if (newWebsite == null) {
-                console.log("failed to update website");
+        function updateWebsite() {
+            var newWebsite = WebsiteService.updateWebsite(websiteId, vm.website);
+            if (newWebsite) {
+                // console.log("website successfully updated");
+                $location.url("/user/" + userId + "/website");
             } else {
-                console.log("website successfully updated");
-                $location.url('#/user/' + userId + '/website');
+                console.log("failed to update website");
             }
         }
 
-        function deleteWebsite(website) {
-            var deleted = WebsiteService.deleteWebsite(website);
+        function deleteWebsite() {
+            var deleted = WebsiteService.deleteWebsite(vm.websiteId);
             if (deleted) {
-                console.log("website successfully delete");
-                $location.url('#/user/' + userId + '/website');
+                console.log("website successfully deleted");
+                $location.url("/user/" + userId + "/website");
             } else {
                 console.log("failed to delete website");
             }

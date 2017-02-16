@@ -9,7 +9,7 @@
 
         function register(user) {
             UserService.createUser(user);
-            $location.url('#/user/' + user._id);
+            $location.url("/user/" + user._id);
         }
     }
 

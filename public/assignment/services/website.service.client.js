@@ -65,7 +65,7 @@
 
         function deleteWebsite(websiteId) {
             for (var w in websites) {
-                if (websites[w]._id === websiteId) {
+                if (websites[w]._id == websiteId) {
                     websites.splice(w, 1);
                     return true;
                 }

@@ -48,19 +48,19 @@
             })
 
             .when("/user/:uid/website/:wid/page",{
-                templateUrl: '/assignment/views/website/templates/page-list.view.client.html',
+                templateUrl: '/assignment/views/page/templates/page-list.view.client.html',
                 controller: "PageListController",
                 controllerAs: "model"
             })
 
             .when("/user/:uid/website/:wid/page/new",{
-                templateUrl: '/assignment/views/website/templates/page-new.view.client.html',
+                templateUrl: '/assignment/views/page/templates/page-new.view.client.html',
                 controller: "PageNewController",
                 controllerAs: "model"
             })
 
             .when("/user/:uid/website/:wid/page/:pid",{
-                templateUrl: '/assignment/views/widget/templates/page-edit.view.client.html',
+                templateUrl: '/assignment/views/page/templates/page-edit.view.client.html',
                 controller: "PageEditController",
                 controllerAs: "model"
             })

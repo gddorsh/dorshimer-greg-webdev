@@ -12,14 +12,9 @@
                     Websites
                 </a>
             </div>
-            <div class="navbar-text pull-right">
-                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
-            </div>
         </div>
 
-        <div class="col-sm-8">>
+        <div class="col-sm-8">
             <div class="navbar-header">
                 <a class="navbar-brand no-left-padding no-left-margin">
                     Edit Website
@@ -39,7 +34,8 @@
                     {{website.name}}
                 </div>
                 <div class="col-xs-2">
-                    <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right">
+                    <a class="pull-right"
+                       href="">
                         <span class="glyphicon glyphicon-cog"></span>
                     </a>
                 </div>
@@ -49,22 +45,26 @@
     </div>
 
     <div class="col-sm-8">
-        <label for="website-name">Website Name</label>
-        <input ng-model="model.website.name"
-               value="Sample Website Name"
-               class="form-control"
-               id="website-name"/>
 
-        <label for="website-description">Website Description</label>
-        <textarea ng-model="model.website.description"
-                  class="form-control"
-                  id="website-description"
-                  rows="3"></textarea>
+        <div class="form-group">
+            <label for="website-name">Website Name</label>
+            <input ng-model="model.website.name"
+                   class="form-control"
+                   id="website-name"/>
+        </div>
 
-        <a ng-click="model.update(model.website)"
+        <div class="form-group">
+            <label for="website-description">Website Description</label>
+            <textarea ng-model="model.website.description"
+                      class="form-control"
+                      id="website-description"
+                      rows="3"></textarea>
+        </div>
+
+        <a ng-click="model.updateWebsite()"
            class="btn btn-primary btn-block top-buffer">Update</a>
 
-        <a ng-click="model.deleteWebsite(model.website)"
+        <a ng-click="model.deleteWebsite()"
            class="btn btn-danger btn-block top-buffer">Delete</a>
     </div>
 </div>
