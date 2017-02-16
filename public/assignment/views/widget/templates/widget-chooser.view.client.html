@@ -3,13 +3,14 @@
     <div class="row container-fluid">
         <div class="col-xs-12">
             <div class="navbar-text pull-left">
-                <a class="navbar-link pull-left" href="widget-list.view.client.html">
+                <a class="navbar-link pull-left"
+                   href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
 
             <div class="navbar-header pull-left">
-                <a class="navbar-brand pull-left" href="#">
+                <a class="navbar-brand pull-left">
                     Choose Widget
                 </a>
             </div>
@@ -18,49 +19,10 @@
 </nav>
 
 <div class="container-fluid">
-    <div class="row top-buffer">
-        <div class="col-xs-12">
-            <a href="widget-heading.view.client.html">
-                Header
-            </a>
-        </div>
-    </div>
 
     <div class="row top-buffer">
         <div class="col-xs-12">
-            <a href="#">
-                Label
-            </a>
-        </div>
-    </div>
-
-    <div class="row top-buffer">
-        <div class="col-xs-12">
-            <a href="#">
-                HTML
-            </a>
-        </div>
-    </div>
-
-    <div class="row top-buffer">
-        <div class="col-xs-12">
-            <a href="#">
-                Text Input
-            </a>
-        </div>
-    </div>
-
-    <div class="row top-buffer">
-        <div class="col-xs-12">
-            <a href="#">
-                Link
-            </a>
-        </div>
-    </div>
-
-    <div class="row top-buffer">
-        <div class="col-xs-12">
-            <a href="#">
+            <a href="">
                 Button
             </a>
         </div>
@@ -68,23 +30,7 @@
 
     <div class="row top-buffer">
         <div class="col-xs-12">
-            <a href="widget-image.view.client.html">
-                Image
-            </a>
-        </div>
-    </div>
-
-    <div class="row top-buffer">
-        <div class="col-xs-12">
-            <a href="widget-youtube.view.client.html">
-                YouTube
-            </a>
-        </div>
-    </div>
-
-    <div class="row top-buffer">
-        <div class="col-xs-12">
-            <a href="#">
+            <a href="">
                 Data Table
             </a>
         </div>
@@ -92,8 +38,64 @@
 
     <div class="row top-buffer">
         <div class="col-xs-12">
-            <a href="#">
+            <a ng-click="linkToWidgetEdit(HEADER)">
+                Header
+            </a>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-xs-12">
+            <a ng-click="linkToWidgetEdit(HTML)">
+                HTML
+            </a>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-xs-12">
+            <a ng-click="linkToWidgetEdit(IMAGE)">
+                Image
+            </a>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-xs-12">
+            <a href="">
+                Label
+            </a>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-xs-12">
+            <a href="">
+                Link
+            </a>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-xs-12">
+            <a href="">
                 Repeater
+            </a>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-xs-12">
+            <a href="">
+                Text Input
+            </a>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-xs-12">
+            <a ng-click="linkToWidgetEdit(YOUTUBE)">
+                YouTube
             </a>
         </div>
     </div>
@@ -103,7 +105,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="navbar-text col-xs-1 pull-right">
-                <a class="navbar-link pull-right" href="/profile">
+                <a class="navbar-link pull-right"
+                   href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-user"></span>
                 </a>
             </div>
