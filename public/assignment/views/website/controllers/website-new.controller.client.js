@@ -19,7 +19,7 @@
             if ((vm.website.name == "") || (vm.website.description == "")) {
                 vm.error = 'Must fill in both fields.';
             } else {
-                var newWebsite = WebsiteService.createWebsite(vm.website);
+                var newWebsite = WebsiteService.createWebsite(userId, vm.website);
 
                 if (newWebsite) {
                     // console.log("successfully created new website");

@@ -43,7 +43,7 @@
 
         function findPageById(pageId) {
             for (var p in pages) {
-                if (pages[p]._id === pageId) {
+                if (pages[p]._id == pageId) {
                     return angular.copy(pages[p]);
                 }
             }

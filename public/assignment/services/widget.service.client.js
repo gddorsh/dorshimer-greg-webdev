@@ -29,8 +29,7 @@
         function createWidget(pageId, widget) {
             widgets.push(widget);
             for (var wg in widgets) {
-                if (widgets[wg]._id === widget._id) {
-                    widgets[wg].pageId = pageId;
+                if (widgets[wg]._id == widget._id) {
                     return angular.copy(widgets[wg]);
                 }
             }
@@ -40,7 +39,7 @@
         function findWidgetsByPageId(pageId) {
             var myWidgets = [];
             for (wg in widgets) {
-                if (wg.pageId === pageId) {
+                if (widgets[wg].pageId == pageId) {
                     myWidgets.push(widgets[wg]);
                 }
             }
@@ -49,7 +48,7 @@
 
         function findWidgetById(widgetId) {
             for (var wg in widgets) {
-                if (widgets[wg]._id === widgetId) {
+                if (widgets[wg]._id == widgetId) {
                     return angular.copy(widgets[wg]);
                 }
             }
@@ -58,7 +57,7 @@
 
         function updateWidget(widgetId, widget) {
             for (var wg in widgets) {
-                if (widgets[wg]._id === widgetId) {
+                if (widgets[wg]._id == widgetId) {
                     widgets[wg] = widget;
                     return angular.copy(widgets[wg]);
                 }
@@ -68,10 +67,12 @@
 
         function deleteWidget(widgetId) {
             for (var wg in widgets) {
-                if (widgets[wg]._id === widgetId) {
+                if (widgets[wg]._id == widgetId) {
                     widgets.splice(wg, 1);
+                    return true;
                 }
             }
+            return false;
         }
     }
 })();

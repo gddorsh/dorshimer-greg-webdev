@@ -26,7 +26,7 @@
         function createWebsite(userId, website) {
             websites.push(website);
             for (w in websites) {
-                if (w.developerId == userId) {
+                if (websites[w].developerId == userId) {
                     return angular.copy(websites[w]);
                 }
             }
@@ -45,7 +45,7 @@
 
         function findWebsiteById(websiteId) {
             for (var w in websites) {
-                if (websites[w]._id === websiteId) {
+                if (websites[w]._id == websiteId) {
                     return angular.copy(websites[w]);
                 }
             }
@@ -54,8 +54,9 @@
 
         function updateWebsite(websiteId, website) {
             for (var w in websites) {
-                if (websites[w]._id === websiteId) {
-                    websites[w] = website;
+                if (websites[w]._id == websiteId) {
+                    websites[w].name = website.name;
+                    websites[w].description = website.description;
                     return angular.copy(websites[w]);
                 }
             }

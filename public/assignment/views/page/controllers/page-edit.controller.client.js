@@ -18,9 +18,9 @@
         function updatePage() {
             var newPage = PageService.updatePage(vm.page._id, vm.page);
             if (newPage == null) {
-                //console.log('failed to update page');
+                console.log('failed to update page');
             } else {
-                //console.log('successfully updated page');
+                console.log('successfully updated page');
                 $location.url("/user/" + userId + "/website/" + websiteId + "/page");
             }
         }

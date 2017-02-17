@@ -12,14 +12,20 @@
         var pageId = $routeParams['pid'];
         vm.pageId = pageId;
 
-        vm.linkToWidgetEdit = linkToWidgetEdit;
+        vm.createWidget = createWidget;
 
-        function linkToWidgetEdit(widgetType) {
+        function createWidget(widgetType) {
             var widgetId = (new Date()).getTime();
             var widget = {};
             widget._id = widgetId;
             widget.widgetType = widgetType;
+            console.log(widgetType.toString());
             widget.pageId = pageId;
+            widget.size = 3;
+            widget.text = 'test text';
+            widget.width = '100%';
+            widget.url = 'testurl';
+
             WidgetService.createWidget(pageId, widget);
 
             $location.url('/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId);

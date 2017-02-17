@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("WidgetListController", WidgetListController);
 
-    function WidgetListController($routeParams, WidgetService) {
+    function WidgetListController($routeParams, $sce, WidgetService) {
         var vm = this;
         var userId = $routeParams['uid'];
         vm.userId = userId;

@@ -11,12 +11,8 @@
         vm.websiteId = websiteId;
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
-
-        function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(userId);
-            vm.website = WebsiteService.findWebsiteById(websiteId);
-        }
-        init();
+        vm.websites = WebsiteService.findWebsitesByUser(userId);
+        vm.website = WebsiteService.findWebsiteById(websiteId);
 
         function updateWebsite() {
             var newWebsite = WebsiteService.updateWebsite(websiteId, vm.website);
