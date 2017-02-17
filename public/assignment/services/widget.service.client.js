@@ -9,7 +9,7 @@
             { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": 2, "text": "GIZMODO" },
             { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum" },
             { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                "url": "http://i.imgur.com/gRDmTYkr.jpg" },
+                "url": "https://i.imgur.com/gRDmTYkr.jpg" },
             { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem Ipsum</p>" },
             { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": 4, "text": "Lorem ipsum" },
             { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
