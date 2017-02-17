@@ -22,7 +22,7 @@
             widget.pageId = pageId;
             WidgetService.createWidget(pageId, widget);
 
-            $location.url('#/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId);
+            $location.url('/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId);
         }
     }
 

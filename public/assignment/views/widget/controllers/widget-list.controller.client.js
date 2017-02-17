@@ -5,7 +5,7 @@
 
     function WidgetListController($routeParams, WidgetService) {
         var vm = this;
-        var userId = $routeParams['pid'];
+        var userId = $routeParams['uid'];
         vm.userId = userId;
         var websiteId = $routeParams['wid'];
         vm.websiteId = websiteId;
@@ -13,11 +13,7 @@
         vm.pageId = pageId;
         vm.getTrustedHtml = getTrustedHtml;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-
-        function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(pageId);
-        }
-        init();
+        vm.widgets = WidgetService.findWidgetsByPageId(pageId);
 
         function getTrustedHtml(html) {
             return $sce.trustAsHtml(html);
