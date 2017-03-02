@@ -1,6 +1,7 @@
 module.exports = function(app) {
     app.post("/api/page/:pageId/widget", createWidget);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
+    app.put("/api/page/:pageId/widget", reorderWidget); // for jquery sorting
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
@@ -40,6 +41,11 @@ module.exports = function(app) {
         } else {
             res.sendStatus(404).send({});
         }
+    }
+
+    function reorderWidget(req, res) {
+        // TODO
+        // change the order of the widgets
     }
 
     // returns an empty json object if no widget is found
