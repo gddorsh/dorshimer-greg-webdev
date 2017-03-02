@@ -2,12 +2,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
         <div class="col-xs-10">
-            <div class="navbar-text pull-left">
-                <a class="navbar-link pull-left"
-                   href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
 
             <div class="navbar-header pull-left">
                 <a class="navbar-brand pull-left">
@@ -35,11 +29,14 @@
         </div>
     </div>
 
-    <a ng-click="model.updateWidget(model.widgetId)"
+    <a ng-click="model.updateWidget()"
        class="btn btn-primary btn-block">Update</a>
 
-    <a ng-click="model.deleteWidget(model.widgetId)"
+    <a ng-click="model.deleteWidget()"
        class="btn btn-danger btn-block">Delete</a>
+
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+       class="btn btn-warning btn-block">Cancel</a>
 
 </div>
 

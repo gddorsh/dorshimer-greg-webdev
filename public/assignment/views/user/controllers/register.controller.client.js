@@ -15,8 +15,14 @@
 
         function register() {
             vm.user._id = (new Date()).getTime();
-            UserService.createUser(vm.user);
-            $location.url("/user/" + vm.user._id);
+            var promise = UserService.createUser(vm.user);
+            promise
+                .success(function (user) {
+                    $location.url("/user/" + vm.user._id);
+                })
+                .error(function (user) {
+                    vm.error("could not create user");
+                })
         }
     }
 

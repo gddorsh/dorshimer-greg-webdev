@@ -11,27 +11,49 @@
         vm.websiteId = websiteId;
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
-        vm.websites = WebsiteService.findWebsitesByUser(userId);
-        vm.website = WebsiteService.findWebsiteById(websiteId);
+        var promise = WebsiteService.findWebsiteById(websiteId);
+        //console.log("sent request");
+        promise
+            .success(function (website) {
+                //console.log("received success reply");
+                vm.website = website;
+            })
+            .error(function (err) {
+                vm.error = "could not fetch website"
+            });
 
         function updateWebsite() {
-            var newWebsite = WebsiteService.updateWebsite(websiteId, vm.website);
-            if (newWebsite) {
-                // console.log("website successfully updated");
-                $location.url("/user/" + userId + "/website");
-            } else {
-                console.log("failed to update website");
-            }
+            var promise = WebsiteService.updateWebsite(websiteId, vm.website);
+            promise
+                .success(function (newWebsite) {
+                    if (newWebsite) {
+                        // console.log("website successfully updated");
+                        $location.url("/user/" + userId + "/website");
+                    } else {
+                        vm.error = "failed to update website";
+                        // console.log("failed to update website");
+                    }
+                })
+                .error(function (err) {
+                    vm.error = err.toString();
+                });
         }
 
         function deleteWebsite() {
-            var deleted = WebsiteService.deleteWebsite(vm.websiteId);
-            if (deleted) {
-                //console.log("website successfully deleted");
-                $location.url("/user/" + userId + "/website");
-            } else {
-                console.log("failed to delete website");
-            }
+            var prmoise = WebsiteService.deleteWebsite(vm.websiteId);
+            promise
+                .success(function (deleted) {
+                    if (deleted) {
+                        //console.log("website successfully deleted");
+                        $location.url("/user/" + userId + "/website");
+                    } else {
+                        vm.error = "failed to delete website";
+                        // console.log("failed to delete website");
+                    }
+                })
+                .error(function (err) {
+                    vm.error = "failed to delete website";
+                })
 
         }
     }

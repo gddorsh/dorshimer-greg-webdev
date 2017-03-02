@@ -13,7 +13,14 @@
         vm.pageId = pageId;
         vm.getTrustedHtml = getTrustedHtml;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-        vm.widgets = WidgetService.findWidgetsByPageId(pageId);
+        var promise = WidgetService.findWidgetsByPageId(pageId);
+        promise
+            .success(function (widgets) {
+                vm.widgets = widgets;
+            })
+            .error(function (err) {
+                vm.error = "could not get widgets";
+            });
 
         function getTrustedHtml(html) {
             return $sce.trustAsHtml(html);

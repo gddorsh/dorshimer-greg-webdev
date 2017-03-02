@@ -19,16 +19,21 @@
             var widget = {};
             widget._id = widgetId;
             widget.widgetType = widgetType;
-            console.log(widgetType.toString());
+            //console.log(widgetType.toString());
             widget.pageId = pageId;
             widget.size = 3;
             widget.text = 'test text';
             widget.width = '100%';
             widget.url = 'testurl';
 
-            WidgetService.createWidget(pageId, widget);
-
-            $location.url('/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId);
+            var promise = WidgetService.createWidget(pageId, widget);
+            promise
+                .success(function (wg) {
+                    $location.url('/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId);
+                })
+                .error(function (err) {
+                    vm.error = "failed to create new widget";
+                });
         }
     }
 

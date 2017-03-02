@@ -11,12 +11,20 @@
         vm.login = login;
 
         function login() {
-            var myUser = UserService.findUserByCredentials(vm.user.username, vm.user.password);
-            if (myUser != null) {
-                $location.url("/user/" + myUser._id);
-            } else {
-                vm.error = 'User/Password combination not found.';
-            }
+            var promise = UserService.findUserByCredentials(vm.user.username, vm.user.password);
+            promise
+                .success(function (user) {
+                    var myUser = user;
+                    if (myUser != null) {
+                        // console.log(myUser);
+                        $location.url("/user/" + myUser._id);
+                    } else {
+                        vm.error = 'User/Password combination not found.';
+                    }
+                })
+                .error(function (err) {
+                    vm.error = 'User/Password combination not found.';
+                });
         }
     }
 

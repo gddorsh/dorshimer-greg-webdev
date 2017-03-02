@@ -2,12 +2,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
         <div class="col-xs-12">
-            <div class="navbar-text pull-left no-left-margin">
-                <a class="navbar-link pull-left"
-                   href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-            </div>
 
             <div class="navbar-header pull-left no-left-margin">
                 <a class="navbar-brand pull-left">
@@ -44,6 +38,9 @@
 
     <a ng-click="model.deletePage()"
        class="btn btn-danger btn-block">Delete</a>
+
+    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"
+       class="btn btn-warning btn-block">Cancel</a>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
