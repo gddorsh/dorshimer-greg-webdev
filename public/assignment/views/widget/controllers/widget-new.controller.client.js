@@ -19,7 +19,7 @@
             var widget = {};
             widget._id = widgetId;
             widget.widgetType = widgetType;
-            //console.log(widgetType.toString());
+            // console.log(widgetType.toString());
             widget.pageId = pageId;
             widget.size = 3;
             widget.text = 'test text';

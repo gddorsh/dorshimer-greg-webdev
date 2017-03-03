@@ -32,7 +32,6 @@
             //console.log(vm.widget);
 
             // update the widget with the new fields
-            //console.log(vm.widgetId);
             var promise2 =  WidgetService.updateWidget(vm.widgetId, vm.widget);
             promise2
                 .success(function (result) {

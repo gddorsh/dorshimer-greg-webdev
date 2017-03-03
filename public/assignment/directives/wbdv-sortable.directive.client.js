@@ -8,6 +8,7 @@
             element.sortable({
                 axis: 'y',
                 handle: ".wbdv-sortable-handle"
+                // should grab handle classname from attributes, but didn't get to that
             });
         }
         return {

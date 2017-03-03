@@ -15,28 +15,54 @@
 <div class="container-fluid">
 
     <div ng-switch="model.widget.widgetType">
+
         <div ng-switch-when="HEADER">
             <ng-include src="'views/widget/templates/widget-HEADER-edit.view.client.html'"></ng-include>
+
+            <a ng-click="model.updateWidget()"
+               class="top-buffer btn btn-primary btn-block">Update</a>
+
+            <a ng-click="model.deleteWidget()"
+               class="btn btn-danger btn-block">Delete</a>
+
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+               class="btn btn-warning btn-block">Cancel</a>
         </div>
+
         <div ng-switch-when="HTML">
             <ng-include src="'views/widget/templates/widget-HTML-edit.view.client.html'"></ng-include>
+
+            <a ng-click="model.updateWidget()"
+                class="top-buffer btn btn-primary btn-block">Update</a>
+
+            <a ng-click="model.deleteWidget()"
+               class="btn btn-danger btn-block">Delete</a>
+
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+               class="btn btn-warning btn-block">Cancel</a>
         </div>
         <div ng-switch-when="IMAGE">
             <ng-include src="'views/widget/templates/widget-IMAGE-edit.view.client.html'"></ng-include>
+
+            <a ng-click="model.deleteWidget()"
+               class="btn btn-danger btn-block">Delete</a>
+
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+               class="btn btn-warning btn-block">Cancel</a>
         </div>
         <div ng-switch-when="YOUTUBE">
             <ng-include src="'views/widget/templates/widget-YOUTUBE-edit.view.client.html'"></ng-include>
+
+            <a ng-click="model.updateWidget()"
+                class="top-buffer btn btn-primary btn-block">Update</a>
+
+            <a ng-click="model.deleteWidget()"
+               class="btn btn-danger btn-block">Delete</a>
+
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
+               class="btn btn-warning btn-block">Cancel</a>
         </div>
     </div>
-
-    <a ng-click="model.updateWidget()"
-       class="btn btn-primary btn-block">Update</a>
-
-    <a ng-click="model.deleteWidget()"
-       class="btn btn-danger btn-block">Delete</a>
-
-    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"
-       class="btn btn-warning btn-block">Cancel</a>
 
 </div>
 

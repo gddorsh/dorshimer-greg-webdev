@@ -1,7 +1,11 @@
 module.exports = function(app) {
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname + '/../../public/assignment/uploads' });
+
     app.post("/api/page/:pageId/widget", createWidget);
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
     app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
-    app.put("/api/page/:pageId/widget", reorderWidget); // for jquery sorting
+    //app.put("/api/page/:pageId/widget", reorderWidget); // for jquery sorting
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
@@ -26,6 +30,49 @@ module.exports = function(app) {
         res.json(newWidget);
     }
 
+    function uploadImage(req, res) {
+
+        var userId = req.body.userId;
+        var websiteId = req.body.websiteId;
+        var pageId = req.body.pageId;
+
+        var width = req.body.width;
+        var myFile = req.file;
+
+        // console.log(pageId);
+
+        var originalname = myFile.originalname; // file name on user's computer
+        var filename = myFile.filename; // new file name in upload folder
+        var path = myFile.path; // full path of uploaded file
+        var destination = myFile.destination; // folder where file is saved to
+        var size = myFile.size; // bytes
+        var mimetype = myFile.mimetype; // file type
+
+        // console.log(originalname);
+        // console.log(filename);
+        // console.log(path);
+        // console.log(destination);
+        // console.log(size);
+        // console.log(mimetype);
+        // console.log(widgetId);
+        // console.log(width);
+
+        var widgetId = (new Date()).getTime();
+        // console.log(widgetId);
+
+        var widgetObject = {};
+        widgetObject._id = widgetId;
+        widgetObject.widgetType = "IMAGE";
+        widgetObject.pageId = pageId;
+        widgetObject.width = "" + width;
+        widgetObject.url = "" + path;
+        widgets.push(widgetObject);
+
+        console.log(widgets[widgets.length - 1]);
+
+        res/*.sendStatus(200)*/.redirect("/assignment/index.html#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
+    }
+
     // returns an empty json object if no widget is found
     function findAllWidgetsForPage(req, res) {
         var pageId = req.params['pageId'];
@@ -43,10 +90,10 @@ module.exports = function(app) {
         }
     }
 
-    function reorderWidget(req, res) {
+    /*function reorderWidget(req, res) {
         // TODO
         // change the order of the widgets
-    }
+    }*/
 
     // returns an empty json object if no widget is found
     function findWidgetById(req, res) {

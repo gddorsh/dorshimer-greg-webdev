@@ -1,7 +1,7 @@
 
 <div class="container">
     <h3>IMAGE Widget</h3>
-
+<!--
     <div class="form-group">
         <label for="widget-url">Widget URL</label>
         <input ng-model="model.widget.url"
@@ -17,4 +17,53 @@
                class="form-control"
                id="widget-width">
     </div>
+-->
+
+    <form class="bottom-margin"
+          action="/api/upload"
+          method="post"
+          enctype="multipart/form-data">
+
+        <label for="widget-file">File</label>
+        <input name="myFile"
+               type="file"
+               class="form-control"
+               id="widget-file"/>
+
+        <label for="widget-width">Image Width</label>
+        <br/>
+        <input name="width"
+               value="{{model.widget.width}}"
+               id="widget-width"
+               />
+        <br/>
+        <label for="widget-url">Widget URL</label>
+        <br/>
+        <input name="url"
+               value="{{model.widget.url}}"
+               id="widget-url"
+               />
+
+        <input name="userId"
+               value="{{model.userId}}"
+               style="display: none"
+        />
+
+        <input name="websiteId"
+               value="{{model.websiteId}}"
+               style="display: none"
+        />
+
+        <input name="pageId"
+               value="{{model.pageId}}"
+               style="display: none"
+               />
+
+        <div class="top-margin">
+            <button type="submit"
+                    class="btn btn-block btn-primary">Upload Image</button>
+        </div>
+
+    </form>
+
 </div>

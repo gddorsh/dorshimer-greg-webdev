@@ -13,10 +13,6 @@
         vm.pageId = pageId;
         vm.getTrustedHtml = getTrustedHtml;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-        // $('.widget-list').sortable({
-        //     axis: "y",
-        //     scroll: "false"
-        // });
         var promise = WidgetService.findWidgetsByPageId(pageId);
         promise
             .success(function (widgets) {
