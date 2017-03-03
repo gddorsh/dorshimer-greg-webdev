@@ -35,40 +35,70 @@ module.exports = function(app) {
         var userId = req.body.userId;
         var websiteId = req.body.websiteId;
         var pageId = req.body.pageId;
-
-        var width = req.body.width;
-        var myFile = req.file;
-
+        var widgetId = req.body.widgetId;
         // console.log(pageId);
 
-        var originalname = myFile.originalname; // file name on user's computer
-        var filename = myFile.filename; // new file name in upload folder
-        var path = myFile.path; // full path of uploaded file
-        var destination = myFile.destination; // folder where file is saved to
-        var size = myFile.size; // bytes
-        var mimetype = myFile.mimetype; // file type
+        var width = req.body.width;
 
-        // console.log(originalname);
-        // console.log(filename);
-        // console.log(path);
-        // console.log(destination);
-        // console.log(size);
-        // console.log(mimetype);
+
+        var myFile;
+        var originalname;
+        var filename;
+        var path;
+        var destination;
+        var size;
+        var mimetype;
+
+        if (req.file) {
+            myFile = req.file;
+
+            originalname = myFile.originalname; // file name on user's computer
+            filename = myFile.filename; // new file name in upload folder
+            path = myFile.path; // full path of uploaded file
+            destination = myFile.destination; // folder where file is saved to
+            size = myFile.size; // bytes
+            mimetype = myFile.mimetype; // file type
+
+            // console.log(originalname);
+            // console.log(filename);
+            // console.log(path);
+            // console.log(destination);
+            // console.log(size);
+            // console.log(mimetype);
+            // console.log(widgetId);
+            // console.log(width);
+        }
+
+        // var widgetId = (new Date()).getTime();
         // console.log(widgetId);
-        // console.log(width);
 
-        var widgetId = (new Date()).getTime();
-        // console.log(widgetId);
+        for (wg in widgets) {
+            if (widgets[wg]._id == widgetId) {
+                if (!width) { // in case they delete what was in the width field
+                    widgets[wg].width = "100%";
+                } else {
+                    widgets[wg].width = width;
+                }
+                // console.log(path);
+                if (path) {
+                    //console.log("into 'if path'");
+                    widgets[wg].url = "" + path;
+                } else {
+                    //console.log("into 'else'");
+                    widgets[wg].url = req.body.url;
+                }
 
-        var widgetObject = {};
-        widgetObject._id = widgetId;
-        widgetObject.widgetType = "IMAGE";
-        widgetObject.pageId = pageId;
-        widgetObject.width = "" + width;
-        widgetObject.url = "" + path;
-        widgets.push(widgetObject);
+                //console.log(widgets[wg]);
+            }
+        }
 
-        console.log(widgets[widgets.length - 1]);
+        // var widgetObject = {};
+        // widgetObject._id = widgetId;
+        // widgetObject.widgetType = "IMAGE";
+        // widgetObject.pageId = pageId;
+        // widgetObject.width = "" + width;
+        // widgetObject.url = "" + path;
+        // widgets.push(widgetObject);
 
         res/*.sendStatus(200)*/.redirect("/assignment/index.html#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget");
     }
