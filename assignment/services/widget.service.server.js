@@ -81,8 +81,9 @@ module.exports = function(app) {
                 }
                 // console.log(path);
                 if (path) {
-                    //console.log("into 'if path'");
-                    widgets[wg].url = "" + path;
+                    // console.log("into 'if path'");
+                    widgets[wg].url = "/assignment/uploads/" + filename;
+                    // console.log(widgets[wg].url);
                 } else {
                     //console.log("into 'else'");
                     widgets[wg].url = req.body.url;
@@ -154,6 +155,9 @@ module.exports = function(app) {
                     return;
                 }
                 if (wgType == 'IMAGE' || wgType == 'YOUTUBE') {
+                    if (wgType == 'IMAGE') {
+
+                    }
                     //console.log("IMAGE or YOUTUBE widget");
                     widgets[wg].url = updatedWidget.url;
                     widgets[wg].width = updatedWidget.width;
