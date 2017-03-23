@@ -5,14 +5,26 @@ module.exports = function(app) {
     app.put("/api/page/:pageId", updatePage);
     app.delete("/api/page/:pageId", deletePage);
 
+    var PageModel = require('../model/page/page.model.server');
+    /*
     var pages = [
         { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
         { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
         { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-    ];
+    ]; */
 
-    // returns an empty json object if name is taken for the given website
     function createPage(req, res) {
+        var promise = PageModel.createPage(req.params['websiteId'], req.body);
+        promise
+            .success(function(page) {
+                res.json(page);
+                return;
+            })
+            .error(function(page) {
+                res.sendStatus(400).send({});
+            });
+        /*
+        // returns an empty json object if name is taken for the given website
         var newPage = req.body;
         newPage.websiteId = req.params['websiteId'];
         // newPage._id = (new Date()).getTime();
@@ -30,10 +42,22 @@ module.exports = function(app) {
         }
         pages.push(newPage);
         res.json(newPage);
+        */
     }
 
-    // returns an empty json object if no page is found
     function findAllPagesForWebsite(req, res) {
+        var promise = PageModel.findAllPagesForWebsite(req.params['websiteId']);
+        promise
+            .success(function(pages) {
+                res.json(pages);
+                return;
+            })
+            .error(function(pages) {
+                res.sendStatus(404).send({});
+            });
+
+        /*
+        // returns an empty json object if no page is found
         var websiteId = req.params['websiteId'];
         var myPages = [];
         for (p in pages) {
@@ -50,10 +74,22 @@ module.exports = function(app) {
         } else {
             res.sendStatus(404).send({});
         }
+        */
     }
 
-    // returns an empty json object if no page is found
     function findPageById(req, res) {
+        var promise = PageModel.findPageById(req.params['pageId']);
+        promise
+            .success(function(page) {
+                res.json(page);
+                return;
+            })
+            .error(function(page) {
+                res.sendStatus(404).send({});
+            });
+
+        /*
+        // returns an empty json object if no page is found
         var pageId = req.params['pageId'];
         for (var p in pages) {
             if (pages[p]._id == pageId) {
@@ -62,10 +98,21 @@ module.exports = function(app) {
             }
         }
         res.sendStatus(404).send({});
+        */
     }
 
-    // returns an empty json object if no page is found
     function updatePage(req, res) {
+        var promise = PageModel.updatePage(req.params['pageId'], req.body);
+        promise
+            .success(function(page) {
+                res.json(page);
+                return;
+            })
+            .error(function(page) {
+                res.sendStatus(404).send({});
+            });
+        /*
+        // returns an empty json object if no page is found
         var pageId = req.params['pageId'];
         var updatedPage = req.body;
         for (var p in pages) {
@@ -84,10 +131,21 @@ module.exports = function(app) {
             }
         }
         res.sendStatus(404).send({});
+        */
     }
 
-    // returns an empty json object if no page is found
     function deletePage(req, res) {
+        var promise = PageModel.deletePage(req.params['pageId']);
+        promise
+            .success(function(pageId) {
+                res.json(pageId);
+                return;
+            })
+            .error(function(page) {
+                res.sendStatus(404).send({});
+            });
+        /*
+        // returns an empty json object if no page is found
         var pageId = req.params['pageId'];
         for (var p in pages) {
             if (pages[p]._id == pageId) {
@@ -97,5 +155,6 @@ module.exports = function(app) {
             }
         }
         res.sendStatus(404).send({});
+        */
     }
 };

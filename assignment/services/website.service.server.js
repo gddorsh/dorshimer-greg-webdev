@@ -5,6 +5,9 @@ module.exports = function(app) {
     app.put("/api/website/:websiteId", updateWebsite);
     app.delete("/api/website/:websiteId", deleteWebsite);
 
+    var WebsiteModel = require('../model/website/website.model.server');
+
+    /*
     var websites = [
         { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem"},
         { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem"},
@@ -12,10 +15,20 @@ module.exports = function(app) {
         { "_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem"},
         { "_id": "678", "name": "Checkers",    "developerId": "123", "description": "Lorem"},
         { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem"}
-    ];
+    ]; */
 
-    // doesn't allow duplicate names
     function createWebsite(req, res) {
+        var promise = WebsiteModel.createWebsiteForUser(req.params['userId'], req.body);
+        promise
+            .success(function(website) {
+                res.json(website);
+                return;
+            })
+            .error(function(website) {
+                res.sendStatus(500);
+            });
+        /*
+        // doesn't allow duplicate names
         var newWebsite = req.body;
         newWebsite.developerId = req.params['userId'];
         if (!newWebsite.description) {
@@ -32,10 +45,22 @@ module.exports = function(app) {
         }
         websites.push(newWebsite);
         res.json(newWebsite);
+        */
     }
 
-    // returns an empty json object if no website is found
     function findAllWebsitesForUser(req, res) {
+        var promise = WebsiteModel.findAllWebsitesForUser(req.params['userId']);
+        promise
+            .success(function(websites) {
+                res.json(websites);
+                return;
+            })
+            .error(function(websites) {
+                res.sendStatus(404).send({});
+            });
+
+        /*
+        // returns an empty json object if no website is found
         var userId = req.params['userId'];
         var myWebsites = [];
         for (w in websites) {
@@ -49,10 +74,22 @@ module.exports = function(app) {
         } else {
             res.sendStatus(404).send({});
         }
+        */
     }
 
-    // returns an empty json object if no website is found
     function findWebsiteById(req, res) {
+        var promise = WebsiteModel.findWebsiteById(req.params['websiteId']);
+        promise
+            .success(function(website) {
+                res.json(website);
+                return;
+            })
+            .error(function(website) {
+                res.sendStatus(404).send({});
+            });
+
+        /*
+        // returns an empty json object if no website is found
         var websiteId = req.params['websiteId'];
         for (var w in websites) {
             if (websites[w]._id == websiteId) {
@@ -61,12 +98,23 @@ module.exports = function(app) {
             }
         }
         res.sendStatus(404).send({});
+        */
     }
 
-    // only updates name and description
-    // doesn't allow duplicate name
-    // returns an empty json object if no website is found
     function updateWebsite(req, res) {
+        var promise = WebsiteModel.updateWebsite(req.params['websiteId'], req.body);
+        promise
+            .success(function(website) {
+                res.json(website);
+                return;
+            })
+            .error(function(website) {
+                res.sendStatus(404).send({});
+            });
+        /*
+        // only updates name and description
+        // doesn't allow duplicate name
+        // returns an empty json object if no website is found
         var websiteId = req.params['websiteId'];
         var updatedWebsite = req.body;
         for (var w in websites) {
@@ -85,9 +133,20 @@ module.exports = function(app) {
             }
         }
         res.sendStatus(404).send({});
+        */
     }
 
     function deleteWebsite(req, res) {
+        var promise = WebsiteModel.deleteWebsite(req.params['websiteId']);
+        promise
+            .success(function(websiteId) {
+                res.sendStatus(200);
+                return;
+            })
+            .error(function(websiteId) {
+                res.sendStatues(404).send({});
+            });
+        /*
         var websiteId = req.params['websiteId'];
         for (var w in websites) {
             if (websites[w]._id == websiteId) {
@@ -97,5 +156,6 @@ module.exports = function(app) {
             }
         }
         res.sendStatus(404).send({});
+        */
     }
 };

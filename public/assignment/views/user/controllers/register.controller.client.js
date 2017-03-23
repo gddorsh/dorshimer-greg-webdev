@@ -14,14 +14,14 @@
         vm.register = register;
 
         function register() {
-            vm.user._id = (new Date()).getTime();
+            //vm.user._id = (new Date()).getTime();
             var promise = UserService.createUser(vm.user);
             promise
                 .success(function (user) {
-                    $location.url("/user/" + vm.user._id);
+                    $location.url("/user/" + user._id);
                 })
                 .error(function (user) {
-                    vm.error("could not create user");
+                    vm.error = "could not create user";
                 })
         }
     }
