@@ -1,0 +1,158 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'q',
+1 verbose cli   '--save',
+1 verbose cli   'dorshimer-greg-webdev' ]
+2 info using npm@3.10.10
+3 info using node@v6.9.4
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData q@^1.5.0
+8 silly fetchPackageMetaData dorshimer-greg-webdev
+9 silly fetchNamedPackageData q
+10 silly mapToRegistry name q
+11 silly mapToRegistry using default registry
+12 silly mapToRegistry registry https://registry.npmjs.org/
+13 silly mapToRegistry data Result {
+13 silly mapToRegistry   raw: 'q',
+13 silly mapToRegistry   scope: null,
+13 silly mapToRegistry   escapedName: 'q',
+13 silly mapToRegistry   name: 'q',
+13 silly mapToRegistry   rawSpec: '',
+13 silly mapToRegistry   spec: 'latest',
+13 silly mapToRegistry   type: 'tag' }
+14 silly mapToRegistry uri https://registry.npmjs.org/q
+15 silly fetchNamedPackageData dorshimer-greg-webdev
+16 silly mapToRegistry name dorshimer-greg-webdev
+17 silly mapToRegistry using default registry
+18 silly mapToRegistry registry https://registry.npmjs.org/
+19 silly mapToRegistry data Result {
+19 silly mapToRegistry   raw: 'dorshimer-greg-webdev',
+19 silly mapToRegistry   scope: null,
+19 silly mapToRegistry   escapedName: 'dorshimer-greg-webdev',
+19 silly mapToRegistry   name: 'dorshimer-greg-webdev',
+19 silly mapToRegistry   rawSpec: '',
+19 silly mapToRegistry   spec: 'latest',
+19 silly mapToRegistry   type: 'tag' }
+20 silly mapToRegistry uri https://registry.npmjs.org/dorshimer-greg-webdev
+21 verbose request uri https://registry.npmjs.org/dorshimer-greg-webdev
+22 verbose request no auth needed
+23 info attempt registry request try #1 at 10:54:47 PM
+24 verbose request id 3bffb61149c93288
+25 http request GET https://registry.npmjs.org/dorshimer-greg-webdev
+26 verbose request uri https://registry.npmjs.org/q
+27 verbose request no auth needed
+28 info attempt registry request try #1 at 10:54:47 PM
+29 verbose etag W/"58d1de1f-24076"
+30 verbose lastModified Wed, 22 Mar 2017 02:14:55 GMT
+31 http request GET https://registry.npmjs.org/q
+32 http 304 https://registry.npmjs.org/q
+33 verbose headers { date: 'Fri, 24 Mar 2017 02:54:39 GMT',
+33 verbose headers   via: '1.1 varnish',
+33 verbose headers   'cache-control': 'max-age=300',
+33 verbose headers   etag: 'W/"58d1de1f-24076"',
+33 verbose headers   age: '87',
+33 verbose headers   connection: 'keep-alive',
+33 verbose headers   'x-served-by': 'cache-bos8220-BOS',
+33 verbose headers   'x-cache': 'HIT',
+33 verbose headers   'x-cache-hits': '1',
+33 verbose headers   'x-timer': 'S1490324079.868323,VS0,VE0',
+33 verbose headers   vary: 'Accept-Encoding' }
+34 silly get cb [ 304,
+34 silly get   { date: 'Fri, 24 Mar 2017 02:54:39 GMT',
+34 silly get     via: '1.1 varnish',
+34 silly get     'cache-control': 'max-age=300',
+34 silly get     etag: 'W/"58d1de1f-24076"',
+34 silly get     age: '87',
+34 silly get     connection: 'keep-alive',
+34 silly get     'x-served-by': 'cache-bos8220-BOS',
+34 silly get     'x-cache': 'HIT',
+34 silly get     'x-cache-hits': '1',
+34 silly get     'x-timer': 'S1490324079.868323,VS0,VE0',
+34 silly get     vary: 'Accept-Encoding' } ]
+35 verbose etag https://registry.npmjs.org/q from cache
+36 verbose get saving q to C:\Users\Greg Dorshimer\AppData\Roaming\npm-cache\registry.npmjs.org\q\.cache.json
+37 verbose correctMkdir C:\Users\Greg Dorshimer\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+38 http 404 https://registry.npmjs.org/dorshimer-greg-webdev
+39 verbose headers { 'content-type': 'application/json',
+39 verbose headers   'cache-control': 'max-age=0',
+39 verbose headers   'content-length': '2',
+39 verbose headers   'accept-ranges': 'bytes',
+39 verbose headers   date: 'Fri, 24 Mar 2017 02:54:40 GMT',
+39 verbose headers   via: '1.1 varnish',
+39 verbose headers   age: '0',
+39 verbose headers   connection: 'keep-alive',
+39 verbose headers   'x-served-by': 'cache-bos8230-BOS',
+39 verbose headers   'x-cache': 'MISS',
+39 verbose headers   'x-cache-hits': '0',
+39 verbose headers   'x-timer': 'S1490324079.843848,VS0,VE303',
+39 verbose headers   vary: 'Accept-Encoding' }
+40 silly get cb [ 404,
+40 silly get   { 'content-type': 'application/json',
+40 silly get     'cache-control': 'max-age=0',
+40 silly get     'content-length': '2',
+40 silly get     'accept-ranges': 'bytes',
+40 silly get     date: 'Fri, 24 Mar 2017 02:54:40 GMT',
+40 silly get     via: '1.1 varnish',
+40 silly get     age: '0',
+40 silly get     connection: 'keep-alive',
+40 silly get     'x-served-by': 'cache-bos8230-BOS',
+40 silly get     'x-cache': 'MISS',
+40 silly get     'x-cache-hits': '0',
+40 silly get     'x-timer': 'S1490324079.843848,VS0,VE303',
+40 silly get     vary: 'Accept-Encoding' } ]
+41 silly fetchPackageMetaData Error: Registry returned 404 for GET on https://registry.npmjs.org/dorshimer-greg-webdev
+41 silly fetchPackageMetaData     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+41 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+41 silly fetchPackageMetaData     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+41 silly fetchPackageMetaData     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+41 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+41 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+41 silly fetchPackageMetaData     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+41 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+41 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+41 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+41 silly fetchPackageMetaData  error for dorshimer-greg-webdev { Error: Registry returned 404 for GET on https://registry.npmjs.org/dorshimer-greg-webdev
+41 silly fetchPackageMetaData     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+41 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+41 silly fetchPackageMetaData     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+41 silly fetchPackageMetaData     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+41 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+41 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+41 silly fetchPackageMetaData     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+41 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+41 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+41 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12) pkgid: 'dorshimer-greg-webdev', statusCode: 404, code: 'E404' }
+42 silly rollbackFailedOptional Starting
+43 silly rollbackFailedOptional Finishing
+44 silly runTopLevelLifecycles Finishing
+45 silly install printInstalled
+46 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/dorshimer-greg-webdev
+46 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+46 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+46 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+46 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+46 verbose stack     at emitTwo (events.js:106:13)
+46 verbose stack     at Request.emit (events.js:191:7)
+46 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+46 verbose stack     at emitOne (events.js:96:13)
+46 verbose stack     at Request.emit (events.js:188:7)
+46 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+47 verbose statusCode 404
+48 verbose pkgid dorshimer-greg-webdev
+49 verbose cwd C:\Users\Greg Dorshimer\Desktop\cs4550\dorshimer-greg-webdev
+50 error Windows_NT 6.1.7601
+51 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "q" "--save" "dorshimer-greg-webdev"
+52 error node v6.9.4
+53 error npm  v3.10.10
+54 error code E404
+55 error 404 Registry returned 404 for GET on https://registry.npmjs.org/dorshimer-greg-webdev
+56 error 404
+57 error 404 'dorshimer-greg-webdev' is not in the npm registry.
+58 error 404 You should bug the author to publish it (or use the name yourself!)
+59 error 404 Note that you can also install from a
+60 error 404 tarball, folder, http url, or git url.
+61 verbose exit [ 1, true ]
