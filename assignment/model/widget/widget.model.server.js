@@ -1,4 +1,8 @@
-module.exports = function() {
+module.exports = function(mongoose, PageModel) {
+
+    var q = require('q');
+    var WidgetSchema = require('./widget.schema.server.js')(mongoose);
+    var WidgetModel = mongoose.model('WidgetModel', WidgetSchema);
 
     var api = {
         createWidget: createWidget,
@@ -11,34 +15,37 @@ module.exports = function() {
 
     return api;
 
-    var mongoose = require('mongoose');
-    var q = require('q');
-    var WidgetSchema = require('./widget.schema.server.js')();
-    var WidgetModel = mongoose.model('WidgetModel', WidgetSchema);
-    var PageModel = require('../page/page.model.server');
-
     function createWidget(pageId, widget) {
+        // console.log("widgetModel hit");
+        // console.log("widgetmodel: pageId: " + pageId);
+        // console.log("widgetModel: widget: " + widget.widgetType);
         var deferred = q.defer();
         WidgetModel
             .create(widget, function(err, newWidget) {
                 if (err) {
+                    // console.log("widget failed to create");
+                    // console.log(err);
                     deferred.reject(err);
                 } else {
-                    var promise = PageModel.findPageById(pageId);
-                    promise
-                        .success(function(page) {
-                            newWidget.sortIndex = page.widgets.length;
+                    // console.log("widget created");
+                    PageModel.findPageById(pageId)
+                        .then(function(page) {
+                            // console.log("page found");
+                            // console.log("page: " + page);
+                            // console.log("newWidget._id: " + newWidget._id);
+                            // console.log("page.widgets: " + page.widgets);
                             page.widgets.push(newWidget._id);
-                            var promise2 = PageModel.updatePage(pageId, page);
-                            promise2
-                                .success(function(page2) {
+                            console.log("page.widgets: " + page.widgets);
+                            PageModel.updatePage(pageId, myPage)
+                                .then(function(page2) {
+                                    console.log("page updated");
                                     deferred.resolve(newWidget);
-                                })
-                                .error(function(page2) {
+                                }, function(page2) {
+                                    console.log("page not updated");
                                     deferred.reject(new Error("Website not found"));
                                 });
-                        })
-                        .error(function(page) {
+                        }, function(page) {
+                            console.log("page not found");
                             deferred.reject(page);
                         });
                 }
@@ -47,14 +54,16 @@ module.exports = function() {
     }
 
     function findAllWidgetsForPage(pageId) {
-        var promise = PageModel.findWebsiteById(pageId);
-        promise
-            .success(function(page) {
-                return page.widgets;
-            })
-            .error(function(page) {
-                return new Error("User not found");
+        var deferred = q.defer();
+        WidgetModel
+            .find({ _page : pageId }, function(err, widgets) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(widgets);
+                }
             });
+        return deferred.promise;
     }
 
     function findWidgetById(widgetId) {

@@ -1,6 +1,7 @@
-module.exports = function() {
+module.exports = function(mongoose) {
 
-    var UserSchema = require('./user.schema.server.js')();
+    var q = require('q');
+    var UserSchema = require('./user.schema.server.js')(mongoose);
     var UserModel = mongoose.model('UserModel', UserSchema);
 
     var api = {
@@ -12,19 +13,18 @@ module.exports = function() {
         deleteUser: deleteUser
     };
 
-    return api;
-
-    var mongoose = require('mongoose');
-    var q = require('q');
-
     function createUser(user) {
         var deferred = q.defer();
-        console.log(user);
+        //console.log(" createUser: " + user);
         UserModel
             .create(user, function(err, newUser) {
                 if (err) {
+                    // console.log("rejected");
+                    // console.log(err);
                     deferred.reject(err);
                 } else {
+                    // console.log("new User: " + newUser);
+                    // console.log(newUser._id);
                     deferred.resolve(newUser);
                 }
             });
@@ -88,6 +88,7 @@ module.exports = function() {
 
     function updateUser(userId, user) {
         var deferred = q.defer();
+        //console.log("userModel, user: " + user);
         UserModel
             .update({ _id: userId }, { $set: { password: user.password,
                                                firstName: user.firstName,
@@ -116,4 +117,7 @@ module.exports = function() {
             });
         return deffered.promise;
     }
+
+
+    return api;
 };

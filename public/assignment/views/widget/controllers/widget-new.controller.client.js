@@ -15,25 +15,27 @@
         vm.createWidget = createWidget;
 
         function createWidget(widgetType) {
-            var widgetId = (new Date()).getTime();
             var widget = {};
-            widget._id = widgetId;
-            widget.widgetType = widgetType;
-            // console.log(widgetType.toString());
-            widget.pageId = pageId;
+            widget._page = pageId;
+            widget.type = widgetType;
+            widget.name = "defaultName";
+            widget.text = "test text";
+            widget.text = "test text";
+            widget.text = "test text";
+            widget.url = "testurl";
+            widget.width = "100%";
+            widget.height = "100%";
+            widget.rows = 3;
             widget.size = 3;
-            widget.text = 'test text';
-            widget.width = '100%';
-            widget.url = 'testurl';
+            widget.class = "defaultClass";
+            widget.icon = "defaultIcon";
 
-            var promise = WidgetService.createWidget(pageId, widget);
-            promise
-                .success(function (wg) {
+            WidgetService.createWidget(pageId, widget)
+                .then(function (wg) {
                     $location.url('/user/' + userId + '/website/' + websiteId + '/page/' + pageId + '/widget/' + widgetId);
-                })
-                .error(function (err) {
-                    vm.error = "failed to create new widget";
-                });
+                }, function (err) {
+                vm.error = "failed to create new widget";
+            });
         }
     }
 

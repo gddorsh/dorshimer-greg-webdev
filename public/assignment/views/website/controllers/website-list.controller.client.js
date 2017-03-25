@@ -8,14 +8,13 @@
         var userId = $routeParams['uid'];
         vm.userId = userId;
         // console.log(vm.userId);
-        var promise = WebsiteService.findWebsitesByUser(userId);
-        promise
-            .success(function (websites) {
-                vm.websites = websites;
-            })
-            .error(function (err) {
+        WebsiteService.findWebsitesByUser(userId)
+            .then(function (websites) {
+                // console.log(websites);
+                vm.websites = websites.data;
+            }, function (err) {
                 vm.error = "could not get websites";
-            })
+            });
     }
 
 })();

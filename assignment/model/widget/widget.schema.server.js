@@ -1,9 +1,8 @@
-module.exports = function () {
-    var mongoose = require('mongoose');
+module.exports = function (mongoose) {
 
     var WidgetSchema = mongoose.Schema({
-        _page: PageSchema, // TODO change type on this
-        type: { type : String, enum : ['HEADER', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT'] },
+        _page: String,
+        type: { type : String, enum : ['HEADER', 'IMAGE', 'YOUTUBE', 'HTML', 'TEXT'] },
         name: String,
         text: String,
         placeholder: String,
@@ -15,10 +14,10 @@ module.exports = function () {
         size: Number,
         class: String,
         icon: String,
-        deletable: Boolean,
-        formatted: Boolean,
-        dateCreated: { type: Date, default: Date.now() },
-        sortIndex: Number
+        deletable: { type: Boolean, default: true },
+        formatted: { type: Boolean, default: true},
+        sortIndex: { type: Number, default: 0 },
+        dateCreated: { type: Date, default: Date.now() }
     }, {collection: 'assignment.widget'});
 
     return WidgetSchema;

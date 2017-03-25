@@ -1,12 +1,11 @@
-module.exports = function () {
-    var mongoose = require('mongoose');
+module.exports = function (mongoose) {
 
     var PageSchema = mongoose.Schema({
-        _website: String, // TODO reference, not full website object
+        _website: String,
         name: String,
         title: String,
         description: String,
-        widgets: [WidgetSchema], // TODO same type issue
+        widgets: [String],
         dateCreated: { type: Date, default: Date.now() }
     }, {collection: 'assignment.page'});
 

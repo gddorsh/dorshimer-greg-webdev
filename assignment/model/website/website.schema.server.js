@@ -1,11 +1,10 @@
-module.exports = function() {
-    var mongoose = require('mongoose');
+module.exports = function(mongoose) {
 
     var WebsiteSchema = mongoose.Schema({
-        _user: String, // TODO syntax for this??
+        _user: String,
         name: String,
         description: String,
-        pages: [PageSchema], // TODO syntax for this??
+        pages: [String],
         dateCreated: { type: Date, default: Date.now() }
     }, {collection: 'assignment.website'});
 

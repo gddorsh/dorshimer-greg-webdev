@@ -1,10 +1,10 @@
-module.exports = function(app) {
-    var userModel = require('./model/user/user.model.server')();
-    require('./services/user.service.server.js')(app, userModel);
-    var websiteModel = require('./model/website/website.model.server')();
-    require('./services/website.service.server.js')(app, websiteModel);
-    var pageModel = require('./model/page/page.model.server')();
-    require('./services/page.service.server.js')(app, pageModel);
-    var widgetModel = require('./model/widget/widget.model.server')();
-    require('./services/widget.service.server.js')(app, widgetModel);
+module.exports = function(app, mongoose) {
+    var UserModel = require('./model/user/user.model.server')(mongoose);
+    require('./services/user.service.server.js')(app, UserModel);
+    var WebsiteModel = require('./model/website/website.model.server')(mongoose, UserModel);
+    require('./services/website.service.server.js')(app, WebsiteModel);
+    var PageModel = require('./model/page/page.model.server')(mongoose, WebsiteModel);
+    require('./services/page.service.server.js')(app, PageModel);
+    var WidgetModel = require('./model/widget/widget.model.server')(mongoose, PageModel);
+    require('./services/widget.service.server.js')(app, WidgetModel);
 };

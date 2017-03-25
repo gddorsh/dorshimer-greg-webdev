@@ -1,14 +1,13 @@
-module.exports = function() {
-    var mongoose = require('mongoose');
+module.exports = function(mongoose) {
 
     var UserSchema = mongoose.Schema({
-        username: String,
+        username: {type: String, require: true},
         password: String,
         firstName: String,
         lastName: String,
         email: String,
         phone: String,
-        websites: [WebsiteSchema], // this is correct
+        websites: [String],
         dateCreated: { type: Date, default: Date.now() }
     }, {collection: 'assignment.user'});
 

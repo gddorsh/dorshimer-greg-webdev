@@ -11,13 +11,10 @@
         vm.websiteId = websiteId;
         vm.create = create;
 
-
         function create() {
-            vm.page._id = (new Date()).getTime();
-            vm.page.websiteId = websiteId;
-            var promise = PageService.createPage(websiteId, vm.page);
-            promise
-                .success(function (newPage) {
+            vm.page._website = websiteId;
+            PageService.createPage(websiteId, vm.page)
+                .then(function (newPage) {
                     if (newPage) {
                         //console.log("new page created successfully");
                         $location.url("/user/" + userId + "/website/" + websiteId + "/page");
@@ -25,10 +22,9 @@
                         //console.log("failed to create new page");
                         vm.error = "failed to create new page";
                     }
-                })
-                .error(function (err) {
+                }, function (err) {
                     vm.error = "failed to create new page";
-                })
+                });
         }
     }
 

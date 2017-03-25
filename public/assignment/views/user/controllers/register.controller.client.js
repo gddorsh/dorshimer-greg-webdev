@@ -6,23 +6,22 @@
     function RegisterController($location, UserService) {
         var vm = this;
         vm.user = {};
-        vm.user._id = "";
         vm.user.username = "";
         vm.user.password = "";
         vm.user.firstName = "";
         vm.user.lastName = "";
+        vm.user.email = "";
+        vm.user.phone = "";
         vm.register = register;
 
         function register() {
-            //vm.user._id = (new Date()).getTime();
-            var promise = UserService.createUser(vm.user);
-            promise
-                .success(function (user) {
-                    $location.url("/user/" + user._id);
-                })
-                .error(function (user) {
+            UserService.createUser(vm.user)
+                .then(function (user) {
+                    //console.log("register controller: " + user.data._id);
+                    $location.url("/user/" + user.data._id);
+                }, function (user) {
                     vm.error = "could not create user";
-                })
+                });
         }
     }
 

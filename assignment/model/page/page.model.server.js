@@ -1,4 +1,8 @@
-module.exports = function() {
+module.exports = function(mongoose, WebsiteModel) {
+
+    var q = require('q');
+    var PageSchema = require('./page.schema.server.js')(mongoose);
+    var PageModel = mongoose.model('PageModel', PageSchema);
 
     var api = {
         createPage: createPage,
@@ -10,33 +14,24 @@ module.exports = function() {
 
     return api;
 
-    var mongoose = require('mongoose');
-    var q = require('q');
-    var PageSchema = require('./page.schema.server.js')();
-    var PageModel = mongoose.model('PageModel', PageSchema);
-    var WebsiteModel = require('../website/website.model.server');
-
     function createPage(websiteId, page) {
         var deferred = q.defer();
+        page.widgets = [ 1 ];
         PageModel
             .create(page, function(err, newPage) {
                 if (err) {
                     deferred.reject(err);
                 } else {
-                    var promise = WebsiteModel.findWebsiteById(websiteId);
-                    promise
-                        .success(function(website) {
+                    WebsiteModel.findWebsiteById(websiteId)
+                        .then(function(website) {
                             website.pages.push(newPage._id);
-                            var promise2 = WebsiteModel.updateWebsite(websiteId, website);
-                            promise2
-                                .success(function(website2) {
+                            WebsiteModel.updateWebsite(websiteId, website)
+                                .then(function(website2) {
                                     deferred.resolve(newPage);
-                                })
-                                .error(function(website2) {
+                                }, function(website2) {
                                     deferred.reject(new Error("Website not found"));
                                 });
-                        })
-                        .error(function(website) {
+                        }, function(website) {
                             deferred.reject(website);
                         });
                 }
@@ -45,14 +40,16 @@ module.exports = function() {
     }
 
     function findAllPagesForWebsite(websiteId) {
-        var promise = WebsiteModel.findWebsiteById(websiteId);
-        promise
-            .success(function(website) {
-                return website.pages;
-            })
-            .error(function(website) {
-                return new Error("User not found");
+        var deferred = q.defer();
+        PageModel
+            .find({ _website: websiteId }, function(err, pages) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(pages);
+                }
             });
+        return deferred.promise;
     }
 
     function findPageById(pageId) {

@@ -24,7 +24,7 @@ mongoose.connect(connectionString);
 
 
 //require("./test/app.js")(app);
-require("./assignment/app.js")(app);
+require("./assignment/app.js")(app, mongoose);
 
 var port = process.env.PORT || 3000;
 

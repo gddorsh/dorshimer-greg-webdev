@@ -1,4 +1,8 @@
-module.exports = function() {
+module.exports = function(mongoose, UserModel) {
+
+    var q = require('q');
+    var WebsiteSchema = require('./website.schema.server.js')(mongoose);
+    var WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
 
     var api = {
         createWebsiteForUser: createWebsiteForUser,
@@ -10,34 +14,36 @@ module.exports = function() {
 
     return api;
 
-    var mongoose = require('mongoose');
-    var q = require('q');
-    var WebsiteSchema = require('./website.schema.server.js')();
-    var WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
-    var UserModel = require('../user/user.model.server');
-
     function createWebsiteForUser(userId, website) {
-        // TODO
+        //console.log("website model: createWebsiteForUser hit");
+        //console.log("website: " + website);
+        //console.log("userId: " + userId);
         var deferred = q.defer();
+        // console.log("website.user: " + website._user);
         WebsiteModel
             .create(website, function(err, newWebsite) {
                 if (err) {
                     deferred.reject(err);
                 } else {
-                    var promise = UserModel.findUserById(userId);
-                    promise
-                        .success(function(user) {
+                    //console.log("newWebsite: " + newWebsite);
+                    //console.log("console sending call to usermodel");
+                    UserModel.findUserById(userId)
+                        .then(function(user) {
+                            //console.log("found user through UserModel");
+                            //console.log("user: " + user);
                             user.websites.push(newWebsite._id);
-                            var promise2 = UserModel.updateUser(userId, user);
-                            promise2
-                                .success(function(user2) {
+                            UserModel.updateUser(userId, user)
+                                .then(function(user2) {
+                                    //console.log("updated user");
+                                    //console.log("updated user's websites: " + user.websites);
+                                    //console.log("websiteId: " + newWebsite._id);
                                     deferred.resolve(newWebsite);
-                                })
-                                .error(function(user2) {
+                                }, function(user2) {
+                                    //console.log("did not update user");
                                     deferred.reject(new Error("User not found"));
+                                    //console.log("deferred.reject");
                                 });
-                        })
-                        .error(function(user) {
+                        }, function(user) {
                             deferred.reject(user);
                         });
                 }
@@ -46,20 +52,22 @@ module.exports = function() {
     }
 
     function findAllWebsitesForUser(userId) {
-        var promise = UserModel.findUserById(userId);
-        promise
-            .success(function(user) {
-                return user.websites;
-            })
-            .error(function(user) {
-                return new Error("User not found");
+        var deferred = q.defer();
+        WebsiteModel
+            .find({ _user : userId }, function(err, websites) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(websites);
+                }
             });
+        return deferred.promise;
     }
 
     function findWebsiteById(websiteId) {
         var deferred = q.defer();
         WebsiteModel
-            .find({ _id : websiteId }, function(err, website) {
+            .findOne({ _id : websiteId }, function(err, website) {
                 if (err) {
                     deferred.reject(err);
                 } else {

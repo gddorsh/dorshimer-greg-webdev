@@ -13,13 +13,11 @@
         vm.pageId = pageId;
         vm.getTrustedHtml = getTrustedHtml;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-        var promise = WidgetService.findWidgetsByPageId(pageId);
-        promise
-            .success(function (widgets) {
+        WidgetService.findWidgetsByPageId(pageId)
+            .then(function (widgets) {
                 vm.widgets = widgets;
-            })
-            .error(function (err) {
-                vm.error = "could not get widgets";
+            }, function (err) {
+                vm.error = "failed to get widgets";
             });
 
         function getTrustedHtml(html) {

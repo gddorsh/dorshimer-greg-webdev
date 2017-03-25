@@ -13,13 +13,15 @@
         vm.pageId = pageId;
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
-        var promise = PageService.findPageById(pageId);
-        promise
-            .success(function (page) {
-                vm.page = page;
-            })
-            .error(function (err) {
-                vm.error = "could not get page";
+        PageService.findPageById(pageId)
+            .then(function (page) {
+                // console.log(page.data.length);
+                // console.log(page);
+                // console.log(page.data);
+                // console.log(page.data[0]);
+                vm.page = page.data[0];
+            }, function (err) {
+                vm.error = "failed to get page";
             });
 
         function updatePage() {
@@ -47,11 +49,11 @@
                         $location.url("/user/" + userId + "/website/" + websiteId + "/page");
                     } else {
                         // console.log('could not delete page');
-                        vm.error = "could not delete page";
+                        vm.error = "failed to delete page";
                     }
                 })
                 .error(function (err) {
-                    vm.error = "could not delete page";
+                    vm.error = "failed to delete page";
                 });
         }
     }

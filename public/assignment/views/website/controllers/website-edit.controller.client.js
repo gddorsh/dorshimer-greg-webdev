@@ -1,7 +1,7 @@
 (function() {
     angular
         .module("WebAppMaker")
-        .controller("WebsiteEditController", WebsiteEditController)
+        .controller("WebsiteEditController", WebsiteEditController);
 
     function WebsiteEditController($routeParams, $location, WebsiteService) {
         var vm = this;
@@ -11,21 +11,17 @@
         vm.websiteId = websiteId;
         vm.updateWebsite = updateWebsite;
         vm.deleteWebsite = deleteWebsite;
-        var promise = WebsiteService.findWebsiteById(websiteId);
-        //console.log("sent request");
-        promise
-            .success(function (website) {
+        WebsiteService.findWebsiteById(websiteId)
+            .then(function (website) {
                 //console.log("received success reply");
-                vm.website = website;
-            })
-            .error(function (err) {
-                vm.error = "could not fetch website"
+                vm.website = website.data;
+            }, function (err) {
+                vm.error = "failed to get website"
             });
 
         function updateWebsite() {
-            var promise = WebsiteService.updateWebsite(websiteId, vm.website);
-            promise
-                .success(function (newWebsite) {
+            WebsiteService.updateWebsite(websiteId, vm.website)
+                .then(function (newWebsite) {
                     if (newWebsite) {
                         // console.log("website successfully updated");
                         $location.url("/user/" + userId + "/website");
@@ -33,16 +29,14 @@
                         vm.error = "failed to update website";
                         // console.log("failed to update website");
                     }
-                })
-                .error(function (err) {
+                }, function (err) {
                     vm.error = err.toString();
                 });
         }
 
         function deleteWebsite() {
-            var prmoise = WebsiteService.deleteWebsite(vm.websiteId);
-            promise
-                .success(function (deleted) {
+            WebsiteService.deleteWebsite(vm.websiteId)
+                .then(function (deleted) {
                     if (deleted) {
                         //console.log("website successfully deleted");
                         $location.url("/user/" + userId + "/website");
@@ -50,12 +44,11 @@
                         vm.error = "failed to delete website";
                         // console.log("failed to delete website");
                     }
-                })
-                .error(function (err) {
+                }, function (err) {
                     vm.error = "failed to delete website";
                 })
-
         }
+
     }
 
 })();
