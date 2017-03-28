@@ -40,17 +40,17 @@
                 </a>
             </div>
 
-            <div ng-switch="widget.widgetType">
-                <div ng-switch-when="HEADER">
+            <div ng-switch="widget.type">
+                <div ng-switch-when="HEADER" class="widget">
                     <ng-include src="'views/widget/templates/widget-HEADER.view.client.html'"></ng-include>
                 </div>
-                <div ng-switch-when="HTML">
+                <div ng-switch-when="HTML" class="widget">
                     <ng-include src="'views/widget/templates/widget-HTML.view.client.html'"></ng-include>
                 </div>
-                <div ng-switch-when="IMAGE">
+                <div ng-switch-when="IMAGE" class="widget">
                     <ng-include src="'views/widget/templates/widget-IMAGE.view.client.html'"></ng-include>
                 </div>
-                <div ng-switch-when="YOUTUBE" class="youtube-widget">
+                <div ng-switch-when="YOUTUBE" class="widget youtube-widget">
                     <ng-include src="'views/widget/templates/widget-YOUTUBE.view.client.html'"></ng-include>
                 </div>
             </div>

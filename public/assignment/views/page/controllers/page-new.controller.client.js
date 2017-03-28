@@ -13,6 +13,7 @@
 
         function create() {
             vm.page._website = websiteId;
+            //vm.page._widgets = [];
             PageService.createPage(websiteId, vm.page)
                 .then(function (newPage) {
                     if (newPage) {

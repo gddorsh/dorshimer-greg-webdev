@@ -15,7 +15,14 @@
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         WidgetService.findWidgetsByPageId(pageId)
             .then(function (widgets) {
-                vm.widgets = widgets;
+                // console.log(widgets);
+                // for (wg in widgets.data) {
+                //     console.log(widgets.data[wg]);
+                // }
+                vm.widgets = widgets.data;
+                // for (wg in vm.widgets) {
+                //     console.log(vm.widgets[wg]);
+                // }
             }, function (err) {
                 vm.error = "failed to get widgets";
             });
@@ -25,9 +32,11 @@
         }
 
         function getYouTubeEmbedUrl(widgetUrl) {
+            console.log(widgetUrl);
             var urlParts = widgetUrl.split('/');
             var id = urlParts[urlParts.length - 1];
             var url = "https://www.youtube.com/embed/" + id;
+            console.log(url);
             return $sce.trustAsResourceUrl(url);
         }
     }

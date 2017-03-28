@@ -18,7 +18,7 @@ module.exports = function(mongoose, PageModel) {
     function createWidget(pageId, widget) {
         // console.log("widgetModel hit");
         // console.log("widgetmodel: pageId: " + pageId);
-        // console.log("widgetModel: widget: " + widget.widgetType);
+        // console.log("widgetModel: widget: " + widget);
         var deferred = q.defer();
         WidgetModel
             .create(widget, function(err, newWidget) {
@@ -31,21 +31,24 @@ module.exports = function(mongoose, PageModel) {
                     PageModel.findPageById(pageId)
                         .then(function(page) {
                             // console.log("page found");
+                            //var page = response[0];
                             // console.log("page: " + page);
                             // console.log("newWidget._id: " + newWidget._id);
                             // console.log("page.widgets: " + page.widgets);
-                            page.widgets.push(newWidget._id);
-                            console.log("page.widgets: " + page.widgets);
+                            // console.log(page._id);
+                            var myPage = page;
+                            myPage.widgets.push(newWidget._id);
+                            // console.log("page.widgets: " + myPage.widgets);
                             PageModel.updatePage(pageId, myPage)
                                 .then(function(page2) {
-                                    console.log("page updated");
+                                    // console.log("page updated");
                                     deferred.resolve(newWidget);
                                 }, function(page2) {
-                                    console.log("page not updated");
+                                    // console.log("page not updated");
                                     deferred.reject(new Error("Website not found"));
                                 });
                         }, function(page) {
-                            console.log("page not found");
+                            // console.log("page not found");
                             deferred.reject(page);
                         });
                 }
@@ -69,7 +72,7 @@ module.exports = function(mongoose, PageModel) {
     function findWidgetById(widgetId) {
         var deferred = q.defer();
         WidgetModel
-            .find({ _id : widgetId }, function(err, widget) {
+            .findOne({ _id : widgetId }, function(err, widget) {
                 if (err) {
                     deferred.reject(err);
                 } else {

@@ -34,16 +34,11 @@ module.exports = function(mongoose) {
     function findUserById(userId) {
         var deferred = q.defer();
         UserModel
-            .find(function(err, users) {
+            .findOne({ _id: userId }, function(err, user) {
                 if (err) {
                     deferred.reject(err);
                 } else {
-                    for (u in users) {
-                        if (users[u]._id == userId) {
-                            deferred.resolve(users[u]);
-                        }
-                    }
-                    deferred.reject(new Error("User not found"));
+                    deferred.resolve(user);
                 }
             });
         return deferred.promise;
@@ -52,16 +47,11 @@ module.exports = function(mongoose) {
     function findUserByUsername(username) {
         var deferred = q.defer();
         UserModel
-            .find(function(err, users) {
+            .findOne({ username: username }, function(err, user) {
                 if (err) {
                     deferred.reject(err);
                 } else {
-                    for (u in users) {
-                        if (users[u].username == username) {
-                            deferred.resolve(users[u]);
-                        }
-                    }
-                    deferred.reject(new Error("User not found"));
+                    deferred.resolve(user);
                 }
             });
         return deferred.promise;
@@ -70,17 +60,11 @@ module.exports = function(mongoose) {
     function findUserByCredentials(username, password) {
         var deferred = q.defer();
         UserModel
-            .find(function(err, users) {
+            .findOne({ username: username, password: password }, function(err, user) {
                 if (err) {
                     deferred.reject(err);
                 } else {
-                    for (u in users) {
-                        if ((users[u].username == username) &&
-                            (users[u].password == password)) {
-                            deferred.resolve(users[u]);
-                        }
-                    }
-                    deferred.reject(new Error("User not found"));
+                    deferred.resolve(user);
                 }
             });
         return deferred.promise;

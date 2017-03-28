@@ -12,8 +12,11 @@ module.exports = function(app, WidgetModel) {
 
     function createWidget(req, res) {
         // console.log("widget service hit");
+        // console.log("widget service: widget: " + req.body);
+        // console.log(req.body);
         WidgetModel.createWidget(req.params['pageId'], req.body)
             .then(function(widget) {
+                // console.log("widget service: widget created");
                 res.json(widget);
                 return;
             }, function(widget) {
@@ -98,12 +101,8 @@ module.exports = function(app, WidgetModel) {
     function findAllWidgetsForPage(req, res) {
         WidgetModel.findAllWidgetsForPage(req.params['pageId'])
             .then(function(widgets) {
-                if (widgets.length > 0) {
-                    res.json(widgets);
-                    return;
-                } else {
-                    res.sendStatus(404);
-                }
+                res.json(widgets);
+                return;
             }, function (widgets) {
                 res.sendStatus(400);
             });
@@ -117,7 +116,6 @@ module.exports = function(app, WidgetModel) {
         WidgetModel.findWidgetById(req.params['widgetId'])
             .then(function(widget) {
                 res.json(widget);
-                return;
             }, function(widget) {
                 res.sendStatus(400);
             });

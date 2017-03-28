@@ -22,7 +22,6 @@ if (process.env.MLAB_USERNAME) {
 var mongoose = require("mongoose");
 mongoose.connect(connectionString);
 
-
 //require("./test/app.js")(app);
 require("./assignment/app.js")(app, mongoose);
 

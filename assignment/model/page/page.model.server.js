@@ -16,7 +16,7 @@ module.exports = function(mongoose, WebsiteModel) {
 
     function createPage(websiteId, page) {
         var deferred = q.defer();
-        page.widgets = [ 1 ];
+        //page.widgets = [];
         PageModel
             .create(page, function(err, newPage) {
                 if (err) {
@@ -24,6 +24,8 @@ module.exports = function(mongoose, WebsiteModel) {
                 } else {
                     WebsiteModel.findWebsiteById(websiteId)
                         .then(function(website) {
+                            // console.log("website: " + website);
+                            // console.log("website.pages: " + website.pages);
                             website.pages.push(newPage._id);
                             WebsiteModel.updateWebsite(websiteId, website)
                                 .then(function(website2) {
@@ -55,7 +57,7 @@ module.exports = function(mongoose, WebsiteModel) {
     function findPageById(pageId) {
         var deferred = q.defer();
         PageModel
-            .find({ _id : pageId }, function(err, page) {
+            .findOne({ _id : pageId }, function(err, page) {
                 if (err) {
                     deferred.reject(err);
                 } else {
