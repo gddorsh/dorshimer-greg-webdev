@@ -1,30 +1,26 @@
 module.exports = function(mongoose) {
 
     var q = require('q');
-    var UserSchema = require('./user.schema.server.js')(mongoose);
-    var UserModel = mongoose.model('UserModel', UserSchema);
+    var UserSchemaP = require('./user.schema.server.js')(mongoose);
+    var UserModelP = mongoose.model('UserModelP', UserSchemaP);
 
     var api = {
-        createUser: createUser,
-        findUserById: findUserById,
-        findUserByUsername: findUserByUsername,
-        findUserByCredentials: findUserByCredentials,
-        updateUser: updateUser,
-        deleteUser: deleteUser
+        createUser: createUser, // user
+        findUserById: findUserById, // userId
+        findUserByCredentials: findUserByCredentials, // username, password
+        findUsersForSearch: findUsersForSearch, // queryString
+        updateUser: updateUser, // userId, user
+        deleteUser: deleteUser // userId
     };
+    return api;
 
     function createUser(user) {
         var deferred = q.defer();
-        //console.log(" createUser: " + user);
-        UserModel
-            .create(user, function(err, newUser) {
+        UserModelP
+            .create(user, function (err, newUser) {
                 if (err) {
-                    // console.log("rejected");
-                    // console.log(err);
                     deferred.reject(err);
                 } else {
-                    // console.log("new User: " + newUser);
-                    // console.log(newUser._id);
                     deferred.resolve(newUser);
                 }
             });
@@ -33,21 +29,8 @@ module.exports = function(mongoose) {
 
     function findUserById(userId) {
         var deferred = q.defer();
-        UserModel
-            .findOne({ _id: userId }, function(err, user) {
-                if (err) {
-                    deferred.reject(err);
-                } else {
-                    deferred.resolve(user);
-                }
-            });
-        return deferred.promise;
-    }
-
-    function findUserByUsername(username) {
-        var deferred = q.defer();
-        UserModel
-            .findOne({ username: username }, function(err, user) {
+        UserModelP
+            .findOne({ _id: userId }, function (err, user) {
                 if (err) {
                     deferred.reject(err);
                 } else {
@@ -59,8 +42,8 @@ module.exports = function(mongoose) {
 
     function findUserByCredentials(username, password) {
         var deferred = q.defer();
-        UserModel
-            .findOne({ username: username, password: password }, function(err, user) {
+        UserModelP
+            .findOne({ username: username, password: password }, function (err, user) {
                 if (err) {
                     deferred.reject(err);
                 } else {
@@ -70,16 +53,26 @@ module.exports = function(mongoose) {
         return deferred.promise;
     }
 
+    function findUsersForSearch(queryString) {
+        var deferred = q.defer();
+        UserModelP
+            .find({ username: queryString }, function (err, users) {
+                if (err) {
+                    deferred.reject(err);
+                } else {
+                    deferred.resolve(users);
+                }
+            });
+        return deferred.promise;
+    }
+
     function updateUser(userId, user) {
         var deferred = q.defer();
-        //console.log("userModel, user: " + user);
-        UserModel
+        UserModelP
             .update({ _id: userId }, { $set: { password: user.password,
-                                               firstName: user.firstName,
-                                               lastName: user.lastName,
-                                               phone: user.phone,
-                                               websites: user.websites }},
-                function(err, user) {
+                                               email: user.email,
+                                               items: user.items }},
+                function (err, user) {
                     if (err) {
                         deferred.reject(err);
                     } else {
@@ -91,17 +84,14 @@ module.exports = function(mongoose) {
 
     function deleteUser(userId) {
         var deferred = q.defer();
-        UserModel
-            .remove({ _id: userId }, function(err) {
+        UserModelP
+            .remove({ _id: userId }, function (err) {
                 if (err) {
                     deferred.reject(err);
                 } else {
                     deferred.resolve(userId);
                 }
             });
-        return deffered.promise;
+        return deferred.promise;
     }
-
-
-    return api;
 };

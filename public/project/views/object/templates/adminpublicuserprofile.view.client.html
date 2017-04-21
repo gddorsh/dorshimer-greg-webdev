@@ -1,0 +1,51 @@
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="row container-fluid">
+        <div class="navbar-header col-xs-12 pull-left no-left-margin">
+            <a class="navbar-brand pull-left">
+                User Profile Search
+            </a>
+            <a href="#/user/{{model.user._id}}/search"
+               class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+            <a href="#/user/{{model.user._id}}"
+               class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div class="alert alert-danger" ng-show="model.error">
+        {{model.error}}
+    </div>
+
+    <div class="alert alert-success" ng-show="model.message">
+        {{model.message}}
+    </div>
+
+
+    <h2>{{model.user.username}}'s Profile</h2>
+
+    Email: {{model.user.email}}
+
+    <ul class="list-group">
+        <li class="list-group-item"
+            ng-repeat="fave in model.favorites">
+            <a href="#/object/{{fave._id}}">{{fave}}</a>
+            <a href="model.deleteFavorite(fave)"
+               class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </li>
+    </ul>
+
+    <a ng-click="model.deleteUser()"
+       class="btn btn-danger btn-block">Delete Account</a>
+
+</div>

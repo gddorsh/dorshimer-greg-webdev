@@ -28,7 +28,7 @@ module.exports = function(app, UserModel) {
     }
 
     function findUserByUsername(req, res) {
-        UserModel.findUserByUsername(res.query['username'])
+        UserModel.findUserByUsername(req.query['username'])
             .then(function(user) {
                 res.json(user);
                 return;
