@@ -3,10 +3,8 @@ module.exports = function(app, UserModelP) {
     app.post("/projectapi/user", createUser);
     app.get("/projectapi/user/:userId", findUserById);
     app.get("/projectapi/user", findUserByCredentials);
-    app.get("/projectapi/search/:queryString", findUsersForSearch);
-    app.put("/projectapi/search/:userId", updateUser);
-    app.put("/projectapi/useritem/:userId", addFavoriteForUser);
-    app.delete("/projectapi/useritem/:userId", deleteFavoriteForUser);
+    app.get("/projectapi/search/user/:queryString", findUsersForSearch);
+    app.put("/projectapi/user/:userId", updateUser);
     app.delete("/projectapi/user/:userId", deleteUser);
 
     /* from front-end service:
@@ -22,7 +20,11 @@ module.exports = function(app, UserModelP) {
     };*/
 
     function createUser(req, res) {
-        UserModelP.createUser(req.body)
+        var user = req.body;
+        if (!user.type) {
+            user.type = 'USER';
+        }
+        UserModelP.createUser(user)
             .then(function (user) {
                 res.json(user);
             }, function (err) {
@@ -59,24 +61,6 @@ module.exports = function(app, UserModelP) {
 
     function updateUser(req, res) {
         UserModelP.updateUser(req.params['userId'], req.body)
-            .then(function (user) {
-                res.json(user);
-            }, function (err) {
-                res.sendStatus(500);
-            });
-    }
-
-    function addFavoriteForUser(req, res) {
-        UserModelP.addFavoriteForUser(req.params['userId'], req.body)
-            .then(function (user) {
-                res.json(user);
-            }, function (err) {
-                res.sendStatus(500);
-            });
-    }
-
-    function deleteFavoriteForUser(req, res) {
-        UserModelP.deleteFavoriteForUser(req.params['userId'], req.body)
             .then(function (user) {
                 res.json(user);
             }, function (err) {

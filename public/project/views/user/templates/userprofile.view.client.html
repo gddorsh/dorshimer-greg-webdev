@@ -1,11 +1,14 @@
 
 
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="row container-fluid">
-        <div class="navbar-header col-xs-12 pull-left no-left-margin">
+    <div class="row container">
+        <div class="navbar-header col-xs-11 pull-left no-left-margin">
             <a class="navbar-brand pull-left">
                 User Profile
             </a>
+        </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
             <a href="#/user/{{model.user._id}}/search"
                class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-search"></span>
@@ -28,7 +31,7 @@
 
     <h2>{{model.user.username}}'s Profile</h2>
 
-    Email: {{model.user.email}}
+    <h4>Email: {{model.user.email}}</h4>
 
     <div class="form-group">
         <label for="password">Password</label>
@@ -39,7 +42,7 @@
     </div>
     <div class="form-group">
         <label for="password2">Verify Password</label>
-        <input ng-model="model.user.password2"
+        <input ng-model="model.password2"
                type="password"
                class="form-control"
                id="password2">

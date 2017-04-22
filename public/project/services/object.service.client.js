@@ -16,7 +16,7 @@
         }
 
         function findItemsForSearch(queryString) {
-            return $http.get("/projectapi/search/" + queryString);
+            return $http.get("/projectapi/search/item/" + queryString);
         }
     }
 })();

@@ -28,7 +28,7 @@
         }
 
         function findUsersForSearch(queryString) {
-            return $http.get("/projectapi/search/" + queryString);
+            return $http.get("/projectapi/search/user/" + queryString);
         }
 
         function updateUser(userId, user) {

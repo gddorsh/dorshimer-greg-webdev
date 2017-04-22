@@ -5,16 +5,16 @@
 
     function DetailsController($routeParams, UserService, ObjectService) {
         var vm = this;
-        vm.user._id = $routeParams['id'];
-        vm.item._id = $routeParams['iid'];
+        vm.userId = $routeParams['id'];
+        vm.itemId = $routeParams['iid'];
         vm.item = {};
         vm.addFavoriteForUser = addFavoriteForUser;
 
-        ObjectService.findItemById(vm.item._id)
+        ObjectService.findItemById(vm.itemId)
             .then(function (item) {
                 if (item) {
-                    // console.log(item.data);
-                    vm.item = item.data;
+                    // console.log(item.data.report.food);
+                    vm.item = item.data.report.food;
                 } else {
                     vm.error = "item not found";
                 }
@@ -22,8 +22,25 @@
                 vm.error = err;
             });
 
+        UserService.findUserById(vm.userId)
+            .then(function (user) {
+                if (user) {
+                    vm.user = user;
+                } else {
+                    vm.error = "failed to get user";
+                }
+            }, function (err) {
+                vm.error = err;
+            });
+
+
         function addFavoriteForUser() {
-            UserService.addFavoriteForUser(vm.user._id, vm.item._id)
+            if (!vm.user.items) {
+                vm.user.items = [];
+            }
+            vm.user.items.push(vm.itemId);
+            // console.log(vm.user.items);
+            UserService.updateUser(vm.userId, vm.user)
                 .then(function (data) {
                     if (data) {
                         vm.message = "favorite added";

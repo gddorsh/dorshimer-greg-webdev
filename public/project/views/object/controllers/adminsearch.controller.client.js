@@ -1,11 +1,11 @@
 (function(){
     angular
         .module("Project")
-        .controller("SearchController", SearchController);
+        .controller("AdminSearchController", AdminSearchController);
 
-    function SearchController($routeParams, $location, ObjectService, UserService) {
+    function AdminSearchController($routeParams, $location, ObjectService, UserService) {
         var vm = this;
-        vm.user._id = $routeParams['id'];
+        vm._id = $routeParams['id'];
         vm.query = "";
         vm.queryUserResults;
         vm.queryItemResults;
@@ -14,12 +14,15 @@
         vm.deleteUser = deleteUser;
 
         function findUsersForSearch() {
+            vm.queryItemResults = "";
             UserService.findUsersForSearch(vm.query)
                 .then(function (results) {
-                    if (results) {
+                    // console.log(results.data.length);
+                    if (results.data.length > 0) {
                         // possibly iterate over results and add each individually
                         vm.queryUserResults = results.data;
                     } else {
+                        // console.log("no users found");
                         vm.error = "no users found";
                     }
                 }, function (err) {
@@ -28,11 +31,16 @@
         }
 
         function findItemsForSearch() {
+            vm.queryUserResults = "";
             ObjectService.findItemsForSearch(vm.query)
                 .then(function (results) {
-                    if (results) {
+                    if (results.data) {
                         // possibly iterate over results and add each individually
-                        vm.queryItemResults = results.data;
+                        // console.log(results.data.list.item);
+                        vm.queryItemResults = results.data.list.item;
+                        // console.log(vm.queryItemResults);
+                        // console.log(vm.queryItemResults[0].name);
+                        // console.log(vm.queryItemResults[0].ndbno);
                     } else {
                         vm.error = "no items found";
                     }
@@ -42,13 +50,12 @@
         }
 
         function deleteUser(user) {
-            UserService.deleteUser(user)
-                .then(function (user) {
-                    if (user) {
-                        $location.url("/admin/" + vm.user._id + "/search");
-                    } else {
-                        vm.error = "could not delete user";
-                    }
+            // console.log(user);
+            UserService.deleteUser(user._id)
+                .then(function (data) {
+                    vm.message = "deleted user";
+                    var i = vm.queryUserResults.indexOf(user);
+                    vm.queryUserResults.splice(i, 1);
                 }, function (err) {
                     vm.error = "could not delete user";
                 });

@@ -22,9 +22,15 @@ if (process.env.MLAB_USERNAME) {
 var mongoose = require("mongoose");
 mongoose.connect(connectionString);
 
+var Client = require('node-rest-client').Client;
+var rest = new Client();
+
 //require("./test/app.js")(app);
 require("./assignment/app.js")(app, mongoose);
-require("./project/app.js")(app, mongoose);
+require("./project/app.js")(app, mongoose, rest);
+
+
+
 
 var port = process.env.PORT || 3000;
 

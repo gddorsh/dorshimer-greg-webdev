@@ -5,24 +5,27 @@
 
     function FavoritesController($routeParams, UserService, ObjectService) {
         var vm = this;
-        vm.user._id = $routeParams['id'];
-        vm.favorites;
+        vm._id = $routeParams['id'];
+        vm.user;
         vm.deleteFavorite = deleteFavorite;
 
-        ObjectService.findFavoritesForUser(vm.user._id)
-            .then(function (favorites) {
-                if (favorites != null) {
-                    vm.favorites = favorites.data; // maybe change this
+        UserService.findUserById(vm._id)
+            .then(function (user) {
+                if (user != null) {
+                    vm.user = user.data;
                 } else {
-                    vm.error = 'no favorites';
+                    vm.error = "couldn't get user";
                 }
             }, function (err) {
                 // console.log(err);
-                vm.error = 'failed to get favorites';
+                vm.error = 'failed to get user';
             });
 
         function deleteFavorite(favorite) {
-            UserService.deleteFavoriteForUser(vm.user._id, favorite._id)
+            var i = vm.user.items.indexOf(favorite);
+            vm.user.items.splice(i, 1);
+
+            UserService.updateUser(vm._id, vm.user)
                 .then(function (user) {
                     if (user) {
                         vm.message = "favorite successfully removed";
@@ -32,7 +35,6 @@
                 }, function (err) {
                     vm.error = err;
                 });
-
         }
     }
 

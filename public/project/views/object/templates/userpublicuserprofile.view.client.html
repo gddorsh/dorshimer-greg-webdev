@@ -2,18 +2,28 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
-        <div class="navbar-header col-xs-12 pull-left no-left-margin">
+        <div class="navbar-header col-xs-10 pull-left no-left-margin">
             <a class="navbar-brand pull-left">
                 User Profile Search
             </a>
-            <a href="#/user/{{model.user._id}}/search"
-               class="navbar-link pull-right">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-            <a href="#/user/{{model.user._id}}"
+        </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
+
+            <a href="#/user/{{model._id}}"
                class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
+
+        </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
+
+            <a href="#/user/{{model._id}}/search"
+               class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+
         </div>
     </div>
 </nav>
@@ -29,16 +39,13 @@
         {{model.message}}
     </div>
 
-    <h2>{{model.user.username}}'s Profile</h2>
+    <h2>{{model.target.username}}'s Profile</h2>
 
     <ul class="list-group">
         <li class="list-group-item"
-            ng-repeat="fave in model.favorites">
+            ng-repeat="fave in model.target.items">
             <a href="#/object/{{fave._id}}">{{fave}}</a>
         </li>
     </ul>
-
-    <a ng-click="model.deleteUser()"
-       class="btn btn-danger btn-block">Delete Account</a>
 
 </div>

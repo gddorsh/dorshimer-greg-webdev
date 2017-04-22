@@ -26,10 +26,20 @@
            class="form-control"
            placeholder="Verify Password"/>
 
-    <a ng-click="model.register()"
-       class="btn btn-primary btn-block">Register</a>
+    <div class="row top-margin">
+        <div class="col-xs-6">
+            <a ng-click="model.registerUser()"
+               class="btn btn-primary btn-block">Register User</a>
 
-    <a class="btn btn-warning btn-block"
+        </div>
+        <div class="col-xs-6">
+            <a ng-click="model.registerAdmin()"
+               class="btn btn-primary btn-block">Register Admin</a>
+
+        </div>
+    </div>
+
+    <a class="btn btn-warning btn-block top-margin"
        href="#/login">Login</a>
 
 </div>

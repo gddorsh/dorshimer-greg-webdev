@@ -30,26 +30,26 @@
             })
 
             .when("/admin/:id/public/:uid",{ // an admin viewing another user's public profile
-                templateUrl: 'views/user/templates/adminpublicuserprofile.view.client.html',
+                templateUrl: 'views/object/templates/adminpublicuserprofile.view.client.html',
                 controller: 'AdminPublicUserProfileController',
                 controllerAs: 'model'
             })
 
             .when("/user/:id/public/:uid",{ // a user viewing another user's public profile
-                templateUrl: 'views/user/templates/userpublicuserprofile.view.client.html',
+                templateUrl: 'views/object/templates/userpublicuserprofile.view.client.html',
                 controller: 'UserPublicUserProfileController',
                 controllerAs: 'model'
             })
 
             .when("/admin/:id/search",{ // an admin viewing the search page
                 templateUrl: 'views/object/templates/adminsearch.view.client.html',
-                controller: 'SearchController',
+                controller: 'AdminSearchController',
                 controllerAs: 'model'
             })
 
             .when("/user/:id/search",{ // a user viewing the search page
                 templateUrl: 'views/object/templates/usersearch.view.client.html',
-                controller: 'SearchController',
+                controller: 'UserSearchController',
                 controllerAs: 'model'
             })
 

@@ -1,11 +1,11 @@
 (function(){
     angular
         .module("Project")
-        .controller("SearchController", SearchController);
+        .controller("UserSearchController", UserSearchController);
 
-    function SearchController($routeParams, ObjectService, UserService) {
+    function UserSearchController($routeParams, $location, ObjectService, UserService) {
         var vm = this;
-        vm.user._id = $routeParams['id'];
+        vm._id = $routeParams['id'];
         vm.query = "";
         vm.queryUserResults;
         vm.queryItemResults;
@@ -13,12 +13,15 @@
         vm.findItemsForSearch = findItemsForSearch;
 
         function findUsersForSearch() {
+            vm.queryItemResults = "";
             UserService.findUsersForSearch(vm.query)
                 .then(function (results) {
-                    if (results) {
+                    // console.log(results.data.length);
+                    if (results.data.length > 0) {
                         // possibly iterate over results and add each individually
                         vm.queryUserResults = results.data;
                     } else {
+                        // console.log("no users found");
                         vm.error = "no users found";
                     }
                 }, function (err) {
@@ -27,11 +30,16 @@
         }
 
         function findItemsForSearch() {
+            vm.queryUserResults = "";
             ObjectService.findItemsForSearch(vm.query)
                 .then(function (results) {
-                    if (results) {
+                    if (results.data) {
                         // possibly iterate over results and add each individually
-                        vm.queryItemResults = results.data;
+                        // console.log(results.data.list.item);
+                        vm.queryItemResults = results.data.list.item;
+                        // console.log(vm.queryItemResults);
+                        // console.log(vm.queryItemResults[0].name);
+                        // console.log(vm.queryItemResults[0].ndbno);
                     } else {
                         vm.error = "no items found";
                     }

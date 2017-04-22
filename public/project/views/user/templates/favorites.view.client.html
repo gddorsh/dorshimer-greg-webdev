@@ -1,19 +1,30 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
-        <div class="navbar-header col-xs-12 pull-left no-left-margin">
+        <div class="navbar-header col-xs-10 pull-left no-left-margin">
             <a class="navbar-brand pull-left">
                 Favorites
             </a>
-            <a href="#/user/{{model.user._id}}/search"
-               class="navbar-link pull-right">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-            <a href="#/user/{{model.user._id}}"
+        </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
+
+            <a href="#/user/{{model._id}}"
                class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
+
         </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
+
+            <a href="#/user/{{model._id}}/search"
+               class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+
+        </div>
+
     </div>
 </nav>
 
@@ -28,15 +39,21 @@
         {{model.message}}
     </div>
 
-    <ul class="list-group">
-        <li class="list-group-item"
-            ng-repeat="fave in model.favorites">
-            <a href="#/object/{{fave._id}}">{{fave}}</a>
-            <a href="model.deleteFavorite(fave)"
-               class="navbar-link pull-right">
-                <span class="glyphicon glyphicon-remove"></span>
+    <ul>
+        <div ng-repeat="fave in model.user.items">
+            <a href="#/user/{{model._id}}/item/{{fave}}">
+                <li class="list-group-item"
+                    ng-repeat="fave in model.user.items">
+
+                    {{fave}}
+
+                    <a ng-click="model.deleteFavorite(fave)"
+                       class="navbar-link pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </li>
             </a>
-        </li>
+        </div>
     </ul>
 
 </div>

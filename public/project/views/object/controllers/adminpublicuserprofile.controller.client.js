@@ -5,14 +5,13 @@
 
     function AdminPublicUserProfileController($routeParams, $location, UserService, ObjectService) {
         var vm = this;
-        vm.user._id = $routeParams['id'];
-        vm.target._id = $routeParams['uid'];
+        vm._id = $routeParams['id'];
+        vm._tid = $routeParams['uid'];
         vm.favorites;
         // vm.update = update;
         vm.deleteUser = deleteUser;
-        vm.deleteFavorite = deleteFavorite;
 
-        UserService.findUserById(vm.target._id)
+        UserService.findUserById(vm._tid)
             .then(function (target) {
                 if (target != null) {
                     vm.target = target.data;
@@ -25,33 +24,6 @@
                 vm.error = 'target user not found';
             });
 
-        ObjectService.findFavoritesForUser(vm.user._id)
-            .then(function (favorites) {
-                if (favorites != null) {
-                    vm.favorites = favorites.data; // maybe change this
-                } else {
-                    vm.error = 'no favorites';
-                }
-            }, function (err) {
-                // console.log(err);
-                vm.error = 'failed to get favorites';
-            });
-
-        function deleteFavorite(favorite) {
-            ObjectService.deleteFavoriteForUser(vm.user._id, favorite._id)
-                .then(function (user) {
-                    if (user) {
-                        vm.message = "favorite successfully removed";
-                    } else {
-                        vm.error = "failed to remove favorite";
-                    }
-                }, function (err) {
-                    vm.error = err;
-                });
-
-        }
-
-
         /*function update() {
             UserService.updateUser(vm.target._id, vm.target)
                 .then(function (target) {
@@ -63,11 +35,11 @@
         }*/
 
         function deleteUser() {
-            UserService.deleteUser(vm.target._id)
+            UserService.deleteUser(vm._tid)
                 .then(function (data) {
                     if (data) {
                         vm.message = "target user successfully deleted";
-                        $location.url("/admin/" + vm.user_id + "/search");
+                        $location.url("/admin/" + vm._id + "/search");
                     } else {
                         vm.error = "could not delete user";
                     }

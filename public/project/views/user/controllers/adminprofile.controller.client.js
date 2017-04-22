@@ -5,13 +5,13 @@
 
     function AdminProfileController($routeParams, $location, UserService) {
         var vm = this;
-        vm.user._id = $routeParams['id'];
+        vm._id = $routeParams['id'];
         vm.update = update;
         vm.logout = logout;
         vm.deleteUser = deleteUser;
 
         //console.log("profile-controller: userId: " + userId);
-        UserService.findUserById(vm.user._id)
+        UserService.findUserById(vm._id)
             .then(function (user) {
                 if (user != null) {
                     vm.user = user.data;
@@ -25,7 +25,7 @@
             });
 
         function update() {
-            UserService.updateUser(vm.user._id, vm.user)
+            UserService.updateUser(vm._id, vm.user)
                 .then(function (user) {
                     vm.message = "user successfully updated";
                     // console.log("profile controller: " + user.data);
@@ -40,7 +40,7 @@
         }
 
         function deleteUser() {
-            UserService.deleteUser(vm.user._id)
+            UserService.deleteUser(vm._id)
                 .then(function (data) {
                     if (data) {
                         $location.url("/register/");

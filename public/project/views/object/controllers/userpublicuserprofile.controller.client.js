@@ -1,15 +1,14 @@
 (function(){
     angular
         .module("Project")
-        .controller("AdminPublicUserProfileController", AdminPublicUserProfileController);
+        .controller("UserPublicUserProfileController", UserPublicUserProfileController);
 
-    function AdminPublicUserProfileController($routeParams, UserService, ObjectService) {
+    function UserPublicUserProfileController($routeParams, UserService, ObjectService) {
         var vm = this;
-        vm.user._id = $routeParams['id'];
-        vm.target._id = $routeParams['uid'];
-        vm.favorites;
+        vm._id = $routeParams['id'];
+        vm._tid = $routeParams['uid'];
 
-        UserService.findUserById(vm.target._id)
+        UserService.findUserById(vm._tid)
             .then(function (target) {
                 if (target != null) {
                     vm.target = target.data;
@@ -20,18 +19,6 @@
             }, function (err) {
                 // console.log(err);
                 vm.error = 'target user not found';
-            });
-
-        ObjectService.findFavoritesForUser(vm.user._id)
-            .then(function (favorites) {
-                if (favorites != null) {
-                    vm.favorites = favorites.data; // maybe change this
-                } else {
-                    vm.error = 'no favorites';
-                }
-            }, function (err) {
-                // console.log(err);
-                vm.error = 'failed to get favorites';
             });
     }
 

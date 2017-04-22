@@ -1,16 +1,21 @@
 
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
-        <div class="navbar-header col-xs-12 pull-left no-left-margin">
+        <div class="navbar-header col-xs-10 pull-left no-left-margin">
             <a class="navbar-brand pull-left">
                 Search
             </a>
-            <a href="#/admin/{{model.user._id}}"
+        </div>
+
+        <div class="navbar-text col-xs-2 pull-right">
+
+            <a href="#/admin/{{model._id}}"
                class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
+
         </div>
+
     </div>
 </nav>
 
@@ -18,7 +23,7 @@
 <div class="container">
 
     <!-- http://bootsnipp.com/snippets/featured/stylish-input-using-icon-font -->
-    <div class="row">
+    <div class="row" align="center">
         <div class="input-group">
             <input ng-model="model.query"
                    type="text"
@@ -26,13 +31,29 @@
                    placeholder="Search">
         </div>
     </div>
-    <a ng-click="model.findUsersForSearch()"
-       class="btn btn-primary btn-block">Search Users</a>
-    <a ng-click="model.findItemsForSearch()"
-       class="btn btn-primary btn-block">Search Items</a>
+
+
+    <!-- buttons -->
+    <div class="row top-margin">
+        <div class="col-xs-6">
+            <a ng-click="model.findUsersForSearch()"
+               class="btn btn-primary btn-block">Search Users</a>
+        </div>
+        <div class="col-xs-6">
+            <a ng-click="model.findItemsForSearch()"
+               class="btn btn-primary btn-block">Search Items</a>
+        </div>
+    </div>
+
+
+    <br/>
 
     <div ng-show="model.error" class="alert alert-danger" role="alert">
         {{model.error}}
+    </div>
+
+    <div ng-show="model.message" class="alert alert-success" role="alert">
+        {{model.message}}
     </div>
 
     <!-- SEARCH RESULTS will populate here -->
@@ -40,7 +61,7 @@
     <ul class="list-group">
         <li class="list-group-item"
             ng-repeat="myUser in model.queryUserResults">
-            <a href="#/user/public/{{myUser._id}}">{{user.username}}</a>
+            <a href="#/admin/{{model._id}}/public/{{myUser._id}}">{{myUser.username}}</a>
             <a ng-click="model.deleteUser(myUser)"
                class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-remove"></span>
@@ -51,7 +72,7 @@
     <ul class="list-group">
         <li class="list-group-item"
             ng-repeat="item in model.queryItemResults">
-            <a href="#/user/{{model.user._id}}/item/{{item._id}}">{{item}}</a>
+            <a href="#/user/{{model._id}}/item/{{item.ndbno}}">{{item.ndbno}}: {{item.name}}</a>
         </li>
     </ul>
 

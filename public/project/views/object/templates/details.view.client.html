@@ -1,19 +1,31 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="row container-fluid">
-        <div class="navbar-header col-xs-12 pull-left no-left-margin">
+        <div class="navbar-header col-xs-10 pull-left no-left-margin">
             <a class="navbar-brand pull-left">
                 Details
             </a>
-            <a href="#/user/{{model.user._id}}/search"
-               class="navbar-link pull-right">
-                <span class="glyphicon glyphicon-search"></span>
-            </a>
-            <a href="#/user/{{model.user._id}}"
+        </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
+
+            <a href="#/user/{{model.userId}}"
                class="navbar-link pull-right">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
+
         </div>
+
+        <div class="navbar-text col-xs-1 pull-right">
+
+            <a href="#/user/{{model.userId}}/search"
+               class="navbar-link pull-right">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+
+        </div>
+
+
     </div>
 </nav>
 
@@ -28,23 +40,15 @@
         {{model.message}}
     </div>
 
-    <h2>{{model.item.title}}</h2>
+    <h2>{{model.item.name}}</h2>
 
-    <h3>Details:</h3>
-    <p>{{model.item.details}}</p>
+    <h3>Nutrients per ounce:</h3>
 
-    <h3>Stats:</h3>
-    <p>Calories: {{model.item.calories}}</p>
+    <div ng-repeat="nutrient in model.item.nutrients">
+        <h3>{{nutrient.name}}: {{nutrient.measures[3].value}}{{nutrient.unit}}</h3>
+    </div>
 
-    <p>Vitamins: {{model.item.vitamins}}</p>
-
-    <p>Fats: {{model.item.fats}}</p>
-
-    <p>Sugars: {{model.item.sugars}}</p>
-
-    <p>Proteins: {{model.item.proteins}}</p>
-
-    <a class="btn btn-primary btn-block"
+    <a class="btn btn-primary btn-block top-margin bottom-margin"
        ng-click="model.addFavoriteForUser()">Add Favorite</a>
 
 </div>
