@@ -1,11 +1,22 @@
-module.exports = function(app, UserModelP) {
+module.exports = function(app, UserModelP, passport) {
 
-    app.post("/projectapi/user", createUser);
-    app.get("/projectapi/user/:userId", findUserById);
-    app.get("/projectapi/user", findUserByCredentials);
-    app.get("/projectapi/search/user/:queryString", findUsersForSearch);
-    app.put("/projectapi/user/:userId", updateUser);
-    app.delete("/projectapi/user/:userId", deleteUser);
+    var LocalStrategy = require('passport-local').Strategy;
+    passport.use(new LocalStrategy(localStrategy));
+
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    var auth = authorized;
+
+    app.post("/projectapi/user",                                  createUser);
+    app.post("/projectapi/login", passport.authenticate('local'), login);
+    app.post("/projectapi/logout",                                logout);
+    app.get("/projectapi/loggedIn",                               loggedIn);
+    app.get("/projectapi/user/:userId",                           findUserById);
+    app.get("/projectapi/user",                                   findUserByCredentials);
+    app.get("/projectapi/search/user/:queryString",         auth, findUsersForSearch);
+    app.put("/projectapi/user/:userId",                     auth, updateUser);
+    app.delete("/projectapi/user/:userId",                  auth, deleteUser);
 
     /* from front-end service:
     var api = {
@@ -18,6 +29,60 @@ module.exports = function(app, UserModelP) {
         "deleteFavoriteForUser": deleteFavoriteForUser, // userId and itemId
         "deleteUser": deleteUser // just id
     };*/
+
+    function serializeUser(user, done) {
+        console.log("in serialize User");
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        console.log("in deserialize User");
+        UserModelP.findUserById(user._id)
+            .then(function (user) {
+                done(null, user);
+            }, function (err) {
+                done(err, null);
+            });
+    }
+
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
+
+    function logout(req, res) {
+        req.logOut();
+        res.sendStatus(200);
+    }
+
+    function loggedIn(req, res) {
+        if (req.isAuthenticated()) {
+            res.json(req.user);
+        } else {
+            res.json('0');
+        }
+    }
+
+    function localStrategy(username, password, done) {
+        UserModelP.findUserByCredentials(username, password)
+            .then(function (user) {
+                if (!user) {
+                    return done(null, false);
+                } else {
+                    return done(null, user);
+                }
+            }, function  (err) {
+                return done(null, err);
+            });
+    }
+
+    function authorized(req, res, done) {
+        if (!req.isAuthenticated()) {
+            res.sendStatus(401);
+        } else {
+            done();
+        }
+    }
 
     function createUser(req, res) {
         var user = req.body;

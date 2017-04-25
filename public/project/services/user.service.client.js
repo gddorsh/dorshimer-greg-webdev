@@ -6,6 +6,9 @@
     function UserService($http) {
 
         var api = {
+            "login": login,
+            "logout": logout,
+            "loggedIn": loggedIn,
             "createUser": createUser, // user object
             "findUserById": findUserById, // userId
             "findUserByCredentials": findUserByCredentials, // username and pass
@@ -14,6 +17,18 @@
             "deleteUser": deleteUser // just id
         };
         return api;
+
+        function login(username, password) {
+            // $http.post("/projectapi/login", )
+        }
+
+        function logout() {
+
+        }
+
+        function loggedIn() {
+
+        }
 
         function createUser(user) {
             return $http.post("/projectapi/user", user);
