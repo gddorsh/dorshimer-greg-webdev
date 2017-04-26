@@ -4,6 +4,24 @@
         .config(configuration);
 
     function configuration($routeProvider) {
+
+        var checkLoggedIn = function($timeout, $http, $location, $rootScope) {
+            var q = require('q');
+            var deferred = q.defer();
+            $http.get('/projectapi/loggedIn')
+                .then(function (user) {
+                    $rootScope.errorMessage = null;
+                    if (user != '0') {
+                        $rootScope.currentUser = user;
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                        $location.url('/');
+                    }
+                });
+            return deferred.promise;
+        };
+
         $routeProvider
             .when("/login",{
                 templateUrl: 'views/user/templates/login.view.client.html',
@@ -76,22 +94,6 @@
             .otherwise({
                 redirectTo: '/login'
             });
-    }
-
-    var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope) {
-        var deferred = q.defer();
-        $http.get('/projectapi/loggedIn')
-            .then(function (user) {
-                $rootScope.errorMessage = null;
-                if (user != '0') {
-                    $rootScope.currentUser = user;
-                    deferred.resolve();
-                } else {
-                    deferred.reject();
-                    $location.url('/');
-                }
-            });
-        return deferred.promise;
     }
 
 })();

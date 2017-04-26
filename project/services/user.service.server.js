@@ -31,12 +31,12 @@ module.exports = function(app, UserModelP, passport) {
     };*/
 
     function serializeUser(user, done) {
-        console.log("in serialize User");
+        //console.log("in serialize User");
         done(null, user);
     }
 
     function deserializeUser(user, done) {
-        console.log("in deserialize User");
+        // console.log("in deserialize User");
         UserModelP.findUserById(user._id)
             .then(function (user) {
                 done(null, user);
@@ -47,6 +47,7 @@ module.exports = function(app, UserModelP, passport) {
 
     function login(req, res) {
         var user = req.user;
+        console.log("back-end user:" + user);
         res.json(user);
     }
 
@@ -66,10 +67,15 @@ module.exports = function(app, UserModelP, passport) {
     function localStrategy(username, password, done) {
         UserModelP.findUserByCredentials(username, password)
             .then(function (user) {
-                if (!user) {
-                    return done(null, false);
+                if (user) {
+                    // console.log("user unauthorized");
+                    if (username == user.username && password == user.password) {
+                        return done(null, user);
+                    } else {
+                        return done(null, false);
+                    }
                 } else {
-                    return done(null, user);
+                    return done(null, false);
                 }
             }, function  (err) {
                 return done(null, err);
