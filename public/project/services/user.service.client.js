@@ -18,16 +18,16 @@
         };
         return api;
 
-        function login(username, password) {
-            // $http.post("/projectapi/login", )
+        function login(user) {
+            $http.post("/projectapi/login", user);
         }
 
         function logout() {
-
+            $http.post("/projectapi/logout");
         }
 
-        function loggedIn() {
-
+        function loggedIn(user) {
+            $http.get("/projectapi/loggedIn", user);
         }
 
         function createUser(user) {

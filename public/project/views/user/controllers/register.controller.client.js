@@ -3,7 +3,7 @@
         .module("Project")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, UserService) {
+    function RegisterController($location, $rootScope, UserService) {
         var vm = this;
         vm.user = {};
         vm.user.username = "";
@@ -18,6 +18,7 @@
                 vm.user.type = 'USER';
                 UserService.createUser(vm.user)
                     .then(function (user) {
+                        $rootScope.currentUser = user.data;
                         //console.log("register controller: " + user.data._id);
                         $location.url("/user/" + user.data._id);
                     }, function (user) {
@@ -33,6 +34,7 @@
                 vm.user.type = 'ADMIN';
                 UserService.createUser(vm.user)
                     .then(function (user) {
+                        $rootScope.currentUser = user.data;
                         //console.log("register controller: " + user.data._id);
                         $location.url("/admin/" + user.data._id);
                     }, function (user) {

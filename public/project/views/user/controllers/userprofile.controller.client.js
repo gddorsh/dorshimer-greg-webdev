@@ -3,7 +3,7 @@
         .module("Project")
         .controller("UserProfileController", UserProfileController);
 
-    function UserProfileController($routeParams, $location, UserService) {
+    function UserProfileController($routeParams, $location, $rootScope, UserService) {
         var vm = this;
         vm._id = $routeParams['id'];
         vm.update = update;
@@ -36,8 +36,13 @@
         }
 
         function logout() {
-            // TODO
-            $location.url("/login");
+            UserService.logout()
+                .then(function (response) {
+                    $rootScope.currentUser = null;
+                    $location.url("/login");
+                }, function (err) {
+                    vm.error = "failed to logout";
+                });
         }
 
         function deleteUser() {

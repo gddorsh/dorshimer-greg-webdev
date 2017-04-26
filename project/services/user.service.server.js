@@ -6,7 +6,7 @@ module.exports = function(app, UserModelP, passport) {
     passport.serializeUser(serializeUser);
     passport.deserializeUser(deserializeUser);
 
-    var auth = authorized;
+    var auth = authenticated;
 
     app.post("/projectapi/user",                                  createUser);
     app.post("/projectapi/login", passport.authenticate('local'), login);
@@ -76,7 +76,7 @@ module.exports = function(app, UserModelP, passport) {
             });
     }
 
-    function authorized(req, res, done) {
+    function authenticated(req, res, done) {
         if (!req.isAuthenticated()) {
             res.sendStatus(401);
         } else {
@@ -91,7 +91,15 @@ module.exports = function(app, UserModelP, passport) {
         }
         UserModelP.createUser(user)
             .then(function (user) {
-                res.json(user);
+                if (user) {
+                    req.login(user, function (err) {
+                        if (!err) {
+                            res.json(user);
+                        } else {
+                            res.sendStatus(400)
+                        }
+                    })
+                }
             }, function (err) {
                 res.sendStatus(500);
             });
