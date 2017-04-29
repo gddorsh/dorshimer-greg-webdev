@@ -5,21 +5,23 @@
 
     function configuration($routeProvider) {
 
-        var checkLoggedIn = function($timeout, $http, $location, $rootScope) {
-            var q = require('q');
-            var deferred = q.defer();
+        var checkLoggedIn = function($q, $timeout, $http, $location, $rootScope) {
+            console.log("into checkLoggedIn");
+            var deferred = $q.defer();
             $http.get('/projectapi/loggedIn')
                 .then(function (user) {
                     $rootScope.errorMessage = null;
                     if (user != '0') {
                         $rootScope.currentUser = user;
+                        // console.log("current user: " + user);
                         deferred.resolve();
+                        return deferred.promise;
                     } else {
-                        deferred.reject();
+                        // deferred.reject();
                         $location.url('/');
                     }
                 });
-            return deferred.promise;
+            // return deferred.promise;
         };
 
         $routeProvider

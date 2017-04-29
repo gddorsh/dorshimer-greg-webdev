@@ -11,6 +11,7 @@
         vm.login = login;
 
         function login() {
+            // console.log("entered login function");
             UserService
                 .login(vm.user)
                 .then(function (user) {

@@ -19,15 +19,15 @@
         return api;
 
         function login(user) {
-            $http.post("/projectapi/login", user);
+            return $http.post("/projectapi/login", user);
         }
 
         function logout() {
-            $http.post("/projectapi/logout");
+            return $http.post("/projectapi/logout");
         }
 
         function loggedIn(user) {
-            $http.get("/projectapi/loggedIn", user);
+            return $http.get("/projectapi/loggedIn", user);
         }
 
         function createUser(user) {
